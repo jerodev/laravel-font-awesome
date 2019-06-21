@@ -9,11 +9,31 @@ class IconRenderer
      *
      * @param string $icon The name of the icon.
      * @param string|null $classes Extra css classes to add to the svg.
+     * * @param string|null $library The icon library to use.
      * @return string|null
      */
-    public static function renderSvg(string $icon, ?string $classes = null): ?string
+    public static function renderSvg(string $icon, ?string $classes = null, ?string $library = null): ?string
     {
-        $svg = self::loadSvg($icon);
+        if ($library !== null) {
+            switch ($library) {
+                case 'fab':
+                case 'b':
+                    $library = 'brands';
+                    break;
+
+                case 'far':
+                case 'r':
+                    $library = 'regular';
+                    break;
+
+                case 'fas':
+                case 's':
+                    $library = 'solid';
+                    break;
+            }
+        }
+
+        $svg = self::loadSvg($icon, $library);
 
         if ($svg !== null && $classes !== null) {
             $svg = self::addSvgCssClasses($svg, $classes);
@@ -26,13 +46,18 @@ class IconRenderer
      * Find the svg file for this icon and return its content.
      *
      * @param string $icon The name of the icon.
+     * @param string|null $library The icon library to use.
      * @return string|null
      */
-    private static function loadSvg(string $icon): ?string
+    private static function loadSvg(string $icon, ?string $library = null): ?string
     {
         $path_str = __DIR__ . '/../Font-Awesome/svgs/%s/' . self::normalizeIconName($icon) . '.svg';
 
         foreach (['regular', 'brands', 'solid'] as $folder) {
+            if ($library !== null && $folder !== $library) {
+                continue;
+            }
+
             $path = sprintf($path_str, $folder);
 
             if (file_exists($path)) {
