@@ -37,8 +37,8 @@ class IconRendererTest extends TestCase
     public static function svgTestCaseProvider(): array
     {
         return [
-            ['building', file_get_contents(__DIR__ . '/../Font-Awesome/svgs/regular/building.svg')],
-            ['fa-laravel', file_get_contents(__DIR__ . '/../Font-Awesome/svgs/brands/laravel.svg')],
+            ['building', file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/regular/building.svg')],
+            ['fa-laravel', file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/brands/laravel.svg')],
             ['foo-bar', null],
         ];
     }
