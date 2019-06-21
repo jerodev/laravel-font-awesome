@@ -21,6 +21,27 @@ class BladeRendererTest extends TestCase
         $this->assertStringContainsString('(\'laravel\', null, \'fab\')', $render);
     }
 
+    public function testFabRenderWithVariable()
+    {
+        $render = BladeRenderer::renderWithLibrary('$expression', 'fab');
+
+        $this->assertStringContainsString('($expression, null, \'fab\')', $render);
+    }
+
+    public function testFabRenderWithVariableAndClass()
+    {
+        $render = BladeRenderer::renderWithLibrary('$expression, \'spin\'', 'fab');
+
+        $this->assertStringContainsString('($expression, \'spin\', \'fab\')', $render);
+    }
+
+    public function testFarRender()
+    {
+        $render = BladeRenderer::renderWithLibrary('\'circle\'', 'far');
+
+        $this->assertStringContainsString('(\'circle\', null, \'far\')', $render);
+    }
+
     public function testFasRender()
     {
         $render = BladeRenderer::renderWithLibrary('\'circle\'', 'fas');
