@@ -1,0 +1,28 @@
+{
+    "name": "jerodev/laravel-font-awesome",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jerodev",
+            "email": "jeroen@deviaene.eu"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jerodev\\LaraFontAwesome\\": "src/",
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jerodev\\LaraFontAwesome\\FontAwesomeServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "illuminate/support": "^5.8",
+        "phpunit/phpunit": "^8.2"
+    }
+}
