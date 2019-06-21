@@ -36,7 +36,7 @@ class IconRenderer
             $path = sprintf($path_str, $folder);
 
             if (file_exists($path)) {
-                return file_get_contents($path);
+                return file_get_contents($path) ?: null;
             }
         }
 

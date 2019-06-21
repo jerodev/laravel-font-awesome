@@ -2,6 +2,7 @@
 
 namespace Jerodev\LaraFontAwesome;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class FontAwesomeServiceProvider extends ServiceProvider
