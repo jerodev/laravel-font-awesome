@@ -38,14 +38,17 @@ class CssGenerator
      */
     private static function getFontAwesomeCssClasses(string $svg): array
     {
-        $start = strpos($svg, 'viewBox="') + 9;
-        $end = strpos($svg, '"', $start);
-        $numbers = explode(' ', substr($svg, $start, $end - $start));
-        $w = $numbers[2] / $numbers[3] * 16;
+        $css_classes = ['svg-inline--fa'];
 
-        return [
-            'svg-inline--fa',
-            "fa-w-$w"
-        ];
+        if (($start = strpos($svg, 'viewBox="')) !== false) {
+            $start += 9;
+            $end = strpos($svg, '"', $start);
+            $numbers = explode(' ', substr($svg, $start, $end - $start));
+            $w = $numbers[2] / $numbers[3] * 16;
+
+            $css_classes[] = "fa-w-$w";
+        }
+
+        return $css_classes;
     }
 }
