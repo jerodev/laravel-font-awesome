@@ -1,0 +1,5 @@
+parameters:
+	ignoreErrors:
+		# Ignore Laravel/Lumen incompatibilites
+		- '#Function config(_path)? not found#'
+		- '#Cannot access offset [^\s]+ on Illuminate\\Contracts\\Foundation\\Application#'
