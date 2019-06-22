@@ -10,6 +10,7 @@ class IconRenderer
      * @param string $icon The name of the icon.
      * @param string|null $css_classes Extra css classes to add to the svg.
      * @param string|null $library The icon library to use.
+     *
      * @return string|null
      */
     public static function renderSvg(string $icon, ?string $css_classes = null, ?string $library = null): ?string
@@ -44,6 +45,7 @@ class IconRenderer
      * @param string $icon The name of the icon.
      * @param string|null $css_classes Aditional css classes to be added to the svg node.
      * @param string|null $library The icon library to use.
+     *
      * @return string|null
      */
     private static function loadSvg(string $icon, ?string $css_classes, ?string $library = null): ?string

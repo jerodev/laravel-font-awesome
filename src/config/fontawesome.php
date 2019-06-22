@@ -19,8 +19,6 @@ return [
 
         'all_requests' => true,
 
-        'name' => 'LaraFontAwesome',
-
     ],
 
 ];

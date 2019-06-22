@@ -11,6 +11,7 @@ class BladeRenderer
      * Render icons without specifying the library.
      *
      * @param string $expression The parameter string passed to the blade directive.
+     *
      * @return string
      */
     public static function renderGeneric(string $expression): string
@@ -23,6 +24,7 @@ class BladeRenderer
      *
      * @param string $expression The parameter string passed to the blade directive.
      * @param string $library The library to get the icon from.
+     *
      * @return string
      */
     public static function renderWithLibrary(string $expression, string $library): string

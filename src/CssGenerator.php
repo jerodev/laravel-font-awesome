@@ -9,6 +9,7 @@ class CssGenerator
      *
      * @param string $svg The raw svg string.
      * @param string[] $css_classes Optional css classes to add to the svg node.
+     *
      * @return string
      */
     public static function mutateSvg(string $svg, array $css_classes = []): string
@@ -23,7 +24,8 @@ class CssGenerator
      * Inject the css classes into the svg node.
      *
      * @param string $svg The raw svg string.
-     * @param string[] $css_classes Aditional css classes to add.
+     * @param string[] $css_classes Additional css classes to add.
+     *
      * @return string
      */
     private static function addSvgClasses(string $svg, array $css_classes = []): string
@@ -49,6 +51,7 @@ class CssGenerator
      * Generates required font awesome css classes based on the svg string.
      *
      * @param string $svg The raw svg string.
+     *
      * @return string[]
      */
     private static function getFontAwesomeCssClasses(string $svg): array
@@ -71,6 +74,7 @@ class CssGenerator
      * Add attributes to the path nodes in the svg to copy styles.
      *
      * @param string $svg The raw svg string.
+     *
      * @return string
      */
     private static function addPathAttributes(string $svg): string
