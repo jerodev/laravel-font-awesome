@@ -11,7 +11,7 @@ return [
     | on them. If you do not include the middleware it might break your page's
     | css.
     | By default you the middleware is added to the `web` middleware group.
-    | It is also possible to dissable this and add the middleware yourself.
+    | It is also possible to disable this and add the middleware yourself.
     |
     */
 
