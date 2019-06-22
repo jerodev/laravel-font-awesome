@@ -2,10 +2,14 @@
 
 namespace Jerodev\LaraFontAwesome\Middleware;
 
+use Closure;
+
 class InjectStyleSheet
 {
-    public function terminate($request, $response)
+    public function handle($request, Closure $next)
     {
+        $response = $next($request);
+
         if (
             ($response->headers->has('Content-Type') && strpos($response->headers->get('Content-Type'), 'html') === false)
             || $request->getRequestFormat() !== 'html'

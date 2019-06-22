@@ -14,6 +14,9 @@ class FontAwesomeServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config/fontawesome.php' => config_path('fontawesome.php'),
         ]);
+        $this->mergeConfigFrom(
+            __DIR__ . '/config/fontawesome.php', 'fontawesome'
+        );
 
         $this->registerBladeDirectives();
         $this->registerMiddleware(InjectStyleSheet::class);
