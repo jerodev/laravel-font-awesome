@@ -5,13 +5,28 @@ namespace Jerodev\LaraFontAwesome;
 class CssGenerator
 {
     /**
-     * Add required css classes to the font awesome svg node.
+     * Add required css and style attributes to the svg string.
      *
      * @param string $svg The raw svg string.
      * @param string[] $css_classes Optional css classes to add to the svg node.
      * @return string
      */
     public static function mutateSvg(string $svg, array $css_classes = []): string
+    {
+        $svg = self::addSvgClasses($svg, $css_classes);
+        $svg = self::addPathAttributes($svg);
+
+        return $svg;
+    }
+
+    /**
+     * Inject the css classes into the svg node.
+     *
+     * @param string $svg The raw svg string.
+     * @param string[] $css_classes Aditional css classes to add.
+     * @return string
+     */
+    private static function addSvgClasses(string $svg, array $css_classes = []): string
     {
         $start = strpos($svg, '<svg');
         $end = strpos($svg, '>', $start);
@@ -50,5 +65,16 @@ class CssGenerator
         }
 
         return $css_classes;
+    }
+
+    /**
+     * Add attributes to the path nodes in the svg to copy styles.
+     *
+     * @param string $svg The raw svg string.
+     * @return string
+     */
+    private static function addPathAttributes(string $svg): string
+    {
+        return str_replace('<path ', '<path fill="currentColor" ', $svg);
     }
 }
