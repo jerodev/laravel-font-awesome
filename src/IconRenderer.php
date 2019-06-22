@@ -60,7 +60,7 @@ class IconRenderer
         $path_str .= "%s/$icon.svg";
 
         $svg = null;
-        foreach (['regular', 'brands', 'solid'] as $folder) {
+        foreach (config('fontawesome.libraries') as $folder) {
             if ($library !== null && $folder !== $library) {
                 continue;
             }

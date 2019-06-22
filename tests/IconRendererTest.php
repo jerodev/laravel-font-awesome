@@ -1,9 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Jerodev\LaraFontAwesome\Tests;
 
 use Jerodev\LaraFontAwesome\IconRenderer;
-use PHPUnit\Framework\TestCase;
 
 class IconRendererTest extends TestCase
 {

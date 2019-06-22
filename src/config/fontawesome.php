@@ -4,6 +4,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Font Awesome Libraries
+    |--------------------------------------------------------------------------
+    |
+    | These are the font awesome libraries that will be available.
+    | The order defined here is the order the libraries will be explored in
+    | when using the @fa() directive.
+    |
+    */
+
+    'libraries' => [
+        'regular',
+        'brands',
+        'solid',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Middleware options
     |--------------------------------------------------------------------------
     |

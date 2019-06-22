@@ -1,9 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Jerodev\LaraFontAwesome\Tests;
 
 use Jerodev\LaraFontAwesome\BladeRenderer;
-use PHPUnit\Framework\TestCase;
 
 class BladeRendererTest extends TestCase
 {

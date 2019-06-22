@@ -43,7 +43,7 @@ To use Font Awesome icons in your view there are a few new blade directives.
 
 When using the `@fa()` directive. The package will scan the different Font Awesome libraries and use the first library where it finds the icon.
 
-The order of scanning is `regular`, `brands`, `solid`.
+The order in which the libraries are scanned is `regular`, `brands`, `solid`. But this can also be modified in the [configuration](#configuration).
 
 ### Middleware
 
@@ -62,4 +62,5 @@ The package contains a few configuration options that can be modified by first p
     
 | Key  | Type | Default value | Description |
 | --- | --- | --- | --- |
-| `Middelware.all_requests` | boolean  | `true` |  |
+| `libraries` | string[]  | `['regular', 'brands', 'solid']` | The icon libraries that will be available. This is also the order in which the libraries will be searched for icons. |
+| `middelware.all_requests` | boolean  | `true` | When enabled, the stylesheet needed for the icons will automatically be injected on every request returning html. |

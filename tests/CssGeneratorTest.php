@@ -1,9 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Jerodev\LaraFontAwesome\Tests;
 
 use Jerodev\LaraFontAwesome\CssGenerator;
-use PHPUnit\Framework\TestCase;
 
 class CssGeneratorTest extends TestCase
 {

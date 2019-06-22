@@ -11,7 +11,7 @@
     "autoload": {
         "psr-4": {
             "Jerodev\\LaraFontAwesome\\": "src/",
-            "Tests\\": "tests/"
+            "Jerodev\\LaraFontAwesome\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -27,6 +27,7 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^0.11.8",
-        "phpunit/phpunit": "^8.2"
+        "phpunit/phpunit": "^8.2",
+        "orchestra/testbench": "^3.5"
     }
 }
