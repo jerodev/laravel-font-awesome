@@ -7,9 +7,9 @@ class IconRenderer
     /**
      * Render a Font Awesome icon as an svg.
      *
-     * @param string      $icon        The name of the icon.
+     * @param string $icon The name of the icon.
      * @param string|null $css_classes Extra css classes to add to the svg.
-     * @param string|null $library     The icon library to use.
+     * @param string|null $library The icon library to use.
      *
      * @return string|null
      */
@@ -42,9 +42,9 @@ class IconRenderer
     /**
      * Find the svg file for this icon and return its content.
      *
-     * @param string      $icon        The name of the icon.
-     * @param string|null $css_classes Aditional css classes to be added to the svg node.
-     * @param string|null $library     The icon library to use.
+     * @param string $icon The name of the icon.
+     * @param string|null $css_classes Additional css classes to be added to the svg node.
+     * @param string|null $library The icon library to use.
      *
      * @return string|null
      */

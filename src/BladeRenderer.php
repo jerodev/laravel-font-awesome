@@ -23,7 +23,7 @@ class BladeRenderer
      * Render icons from a specific library.
      *
      * @param string $expression The parameter string passed to the blade directive.
-     * @param string $library    The library to get the icon from.
+     * @param string $library The library to get the icon from.
      *
      * @return string
      */

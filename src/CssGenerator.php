@@ -7,7 +7,7 @@ class CssGenerator
     /**
      * Add required css and style attributes to the svg string.
      *
-     * @param string   $svg         The raw svg string.
+     * @param string $svg The raw svg string.
      * @param string[] $css_classes Optional css classes to add to the svg node.
      *
      * @return string
@@ -23,7 +23,7 @@ class CssGenerator
     /**
      * Inject the css classes into the svg node.
      *
-     * @param string   $svg         The raw svg string.
+     * @param string $svg The raw svg string.
      * @param string[] $css_classes Additional css classes to add.
      *
      * @return string
