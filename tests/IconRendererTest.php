@@ -17,7 +17,7 @@ class IconRendererTest extends TestCase
     public function testRenderWithLibrary()
     {
         $expected = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-w-16 fa-circle"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"/></svg>';
-        $circle = IconRenderer::renderSvg('circle', null, 'fas');
+        $circle = IconRenderer::renderSvg('circle', null, 'solid');
 
         $this->assertEquals($expected, $circle);
     }

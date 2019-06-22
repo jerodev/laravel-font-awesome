@@ -15,25 +15,6 @@ class IconRenderer
      */
     public static function renderSvg(string $icon, ?string $css_classes = null, ?string $library = null): ?string
     {
-        if ($library !== null) {
-            switch ($library) {
-                case 'fab':
-                case 'b':
-                    $library = 'brands';
-                    break;
-
-                case 'far':
-                case 'r':
-                    $library = 'regular';
-                    break;
-
-                case 'fas':
-                case 's':
-                    $library = 'solid';
-                    break;
-            }
-        }
-
         $svg = self::loadSvg($icon, $css_classes, $library);
 
         return $svg;

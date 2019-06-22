@@ -27,17 +27,12 @@ class FontAwesomeServiceProvider extends ServiceProvider
             return BladeRenderer::renderGeneric($expression);
         });
 
-        Blade::directive('fab', function ($expression) {
-            return BladeRenderer::renderWithLibrary($expression, 'fab');
-        });
-
-        Blade::directive('far', function ($expression) {
-            return BladeRenderer::renderWithLibrary($expression, 'far');
-        });
-
-        Blade::directive('fas', function ($expression) {
-            return BladeRenderer::renderWithLibrary($expression, 'fas');
-        });
+        foreach (config('fontawesome.libraries') as $library)
+        {
+            Blade::directive('fa' . $library[0], function ($expression) use ($library) {
+                return BladeRenderer::renderWithLibrary($expression, $library);
+            });
+        }
     }
 
     private function registerMiddleware($middleware)
