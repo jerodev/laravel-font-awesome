@@ -2,7 +2,6 @@
 
 namespace Jerodev\LaraFontAwesome;
 
-use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Jerodev\LaraFontAwesome\Middleware\InjectStyleSheet;
