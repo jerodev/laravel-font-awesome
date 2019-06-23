@@ -1,7 +1,9 @@
 # Font Awesome Blade directives for Laravel
 [![Build Status](https://travis-ci.com/jerodev/laravel-font-awesome.svg?branch=master)](https://travis-ci.com/jerodev/laravel-font-awesome) [![StyleCI](https://github.styleci.io/repos/193088933/shield?branch=master)](https://github.styleci.io/repos/193088933)
 
-> Work In Progress
+This package will render font awesome icons in your views on the server side. This removes the need to add extra JavaScript or webfont resources on the client side and in doing so reduces the size of your website significantly.
+
+This is achieved by replacing the icons with their svg counterpart before sending the response to the client.
 
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -9,6 +11,7 @@
 - [Usage](#usage)
   - [Middleware](#middleware)
 - [Configuration](#configuration)
+- [To Do](#to-do)
 
 ## Requirements
 
@@ -43,7 +46,7 @@ To use Font Awesome icons in your view there are a few new blade directives.
 
 When using the `@fa()` directive. The package will scan the different Font Awesome libraries and use the first library where it finds the icon.
 
-The order in which the libraries are scanned is `regular`, `brands`, `solid`. But this can also be modified in the [configuration](#configuration).
+The order in which the libraries are scanned is `regular`, `brands`, `solid`. But this can be modified in the [configuration](#configuration).
 
 ### Middleware
 
@@ -64,3 +67,9 @@ The package contains a few configuration options that can be modified by first p
 | --- | --- | --- | --- |
 | `libraries` | string[]  | `['regular', 'brands', 'solid']` | The icon libraries that will be available. This is also the order in which the libraries will be searched for icons. |
 | `middelware.all_requests` | boolean  | `true` | When enabled, the stylesheet needed for the icons will automatically be injected on every request returning html. |
+
+## To Do
+
+Currently the package only supports basic icon rendering. There is no support for special cases, such as: [stacking icons](https://fontawesome.com/how-to-use/on-the-web/styling/stacking-icons) or [masking icons](https://fontawesome.com/how-to-use/on-the-web/styling/masking), because I never used these myself.
+
+In the future however, I want to add these as well to make this package support the full api that is available using the Font Awesome library.
