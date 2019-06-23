@@ -4,6 +4,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Path to svg libraries
+    |--------------------------------------------------------------------------
+    |
+    | This is the absolute path to the folder where the icon libraries
+    | containing svg files is located.
+    |
+    */
+
+    'icon_path' => __DIR__ . '/../../fortawesome/font-awesome/svgs/',
+
+    /*
+    |--------------------------------------------------------------------------
     | Font Awesome Libraries
     |--------------------------------------------------------------------------
     |

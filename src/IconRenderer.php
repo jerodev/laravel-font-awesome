@@ -35,13 +35,9 @@ class IconRenderer
      */
     private static function loadSvg(string $icon, ?string $library = null): ?string
     {
-        $path_str = __DIR__ . '/../../../fortawesome/font-awesome/svgs/';
-        if (!file_exists($path_str)) {
-            $path_str = __DIR__ . '/../vendor/fortawesome/font-awesome/svgs/';
-        }
-        $path_str .= "%s/$icon.svg";
-
         $svg = null;
+        $path_str = config('fontawesome.icon_path') . "%s/$icon.svg";
+
         foreach (config('fontawesome.libraries') as $folder) {
             if ($library !== null && $folder !== $library) {
                 continue;
