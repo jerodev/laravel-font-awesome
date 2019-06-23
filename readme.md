@@ -1,5 +1,5 @@
 # Font Awesome Blade directives for Laravel
-[![Build Status](https://travis-ci.com/jerodev/laravel-font-awesome.svg?branch=master)](https://travis-ci.com/jerodev/laravel-font-awesome) [![StyleCI](https://github.styleci.io/repos/193088933/shield?branch=master)](https://github.styleci.io/repos/193088933)
+![Travis (.com)](https://img.shields.io/travis/com/jerodev/laravel-font-awesome.svg?style=flat-square) [![StyleCI](https://github.styleci.io/repos/193088933/shield?branch=master)](https://github.styleci.io/repos/193088933)
 
 This package will render font awesome icons in your views on the server side. This removes the need to add extra JavaScript or webfont resources on the client side and in doing so reduces the size of your website significantly.
 
@@ -15,8 +15,8 @@ This is achieved by replacing the icons with their svg counterpart before sendin
 
 ## Requirements
 
-- PHP 7.2+
-- Laravel 5.6+
+- PHP >= 7.1.3
+- Laravel >= 5.6
 
 ## Installation
 
