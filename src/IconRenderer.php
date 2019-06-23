@@ -15,7 +15,12 @@ class IconRenderer
      */
     public static function renderSvg(string $icon, ?string $css_classes = null, ?string $library = null): ?string
     {
-        $svg = self::loadSvg($icon, $css_classes, $library);
+        $icon = self::normalizeIconName($icon);
+
+        $svg = self::loadSvg($icon, $library);
+        if ($svg !== null) {
+            $svg = CssGenerator::mutateSvg($svg, explode(' ', "$css_classes fa-$icon"));
+        }
 
         return $svg;
     }
@@ -24,16 +29,12 @@ class IconRenderer
      * Find the svg file for this icon and return its content.
      *
      * @param string $icon The name of the icon.
-     * @param string|null $css_classes Additional css classes to be added to the svg node.
      * @param string|null $library The icon library to use.
      *
      * @return string|null
      */
-    private static function loadSvg(string $icon, ?string $css_classes, ?string $library = null): ?string
+    private static function loadSvg(string $icon, ?string $library = null): ?string
     {
-        $icon = self::normalizeIconName($icon);
-        $css_classes .= " fa-$icon";
-
         $path_str = __DIR__ . '/../../../fortawesome/font-awesome/svgs/';
         if (!file_exists($path_str)) {
             $path_str = __DIR__ . '/../vendor/fortawesome/font-awesome/svgs/';
@@ -47,15 +48,10 @@ class IconRenderer
             }
 
             $path = sprintf($path_str, $folder);
-
             if (file_exists($path)) {
                 $svg = file_get_contents($path) ?: null;
                 break;
             }
-        }
-
-        if ($svg !== null) {
-            $svg = CssGenerator::mutateSvg($svg, explode(' ', $css_classes));
         }
 
         return $svg;
