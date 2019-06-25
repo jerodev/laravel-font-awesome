@@ -38,6 +38,8 @@ class IconRendererTest extends TestCase
         return [
             ['building', file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/regular/building.svg')],
             ['fa-laravel', file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/brands/laravel.svg')],
+            ['fa fa-circle', file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/regular/circle.svg')],
+            ['far fa-square', file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/regular/square.svg')],
             ['foo-bar', null],
         ];
     }

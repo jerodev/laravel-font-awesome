@@ -63,6 +63,13 @@ class IconRenderer
      */
     private static function normalizeIconName(string $icon): string
     {
+        $icon = trim($icon);
+
+        // Remove library specification prefix from the string.
+        if (substr($icon, 0, 2) === 'fa' && ($spos = strpos($icon, ' ')) !== false) {
+            $icon = substr($icon, $spos + 1);
+        }
+
         // Remove 'fa-' from the start of the string.
         if (substr($icon, 0, 3) === 'fa-') {
             $icon = substr($icon, 3);
