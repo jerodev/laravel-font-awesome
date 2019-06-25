@@ -20,6 +20,7 @@ class IconRenderer
         $svg = self::loadSvg($icon, $library);
         if ($svg !== null) {
             $svg = CssGenerator::mutateSvg($svg, explode(' ', "$css_classes fa-$icon"));
+            $svg = str_replace(' xmlns="http://www.w3.org/2000/svg"', '', $svg);
         }
 
         return $svg;
