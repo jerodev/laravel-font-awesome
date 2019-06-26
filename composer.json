@@ -10,7 +10,11 @@
     ],
     "autoload": {
         "psr-4": {
-            "Jerodev\\LaraFontAwesome\\": "src/",
+            "Jerodev\\LaraFontAwesome\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Jerodev\\LaraFontAwesome\\Tests\\": "tests/"
         }
     },
