@@ -1,11 +1,20 @@
 {
     "name": "jerodev/laravel-font-awesome",
+    "description": "A Laravel package that renders Font Awesome icons server-side",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "Laravel",
+        "FontAwesome",
+        "svg"
+    ],
+    "homepage": "https://github.com/jerodev/laravel-font-awesome",
     "authors": [
         {
-            "name": "Jerodev",
-            "email": "jeroen@deviaene.eu"
+            "name": "Jeroen Deviaene",
+            "email": "jeroen@deviaene.eu",
+            "homepage": "https://www.deviaene.eu/",
+            "role": "Developer"
         }
     ],
     "autoload": {
