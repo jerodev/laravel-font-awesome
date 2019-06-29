@@ -65,7 +65,7 @@ The middleware you should use is `\Jerodev\LaraFontAwesome\Middleware\InjectStyl
 
 The package contains a few configuration options that can be modified by first publishing the config file using the command below. This will create a `fontawesome.php` file in your `config` folder.
 
-    php artisan vendor:publish --provider="Jerodev\LaraFontAwesome\FontAwesomeServviceProvider"
+    php artisan vendor:publish --provider="Jerodev\LaraFontAwesome\FontAwesomeServiceProvider"
     
 | Key  | Type | Default value | Description |
 | --- | --- | --- | --- |
