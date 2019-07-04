@@ -1,21 +1,23 @@
 # Font Awesome Blade directives for Laravel
-[![Latest Stable Version](https://poser.pugx.org/jerodev/laravel-font-awesome/v/stable?format=flat-square)](https://packagist.org/packages/jerodev/laravel-font-awesome) 
-[![License](https://poser.pugx.org/jerodev/laravel-font-awesome/license?format=flat-square)](https://packagist.org/packages/jerodev/laravel-font-awesome) 
+[![Latest Stable Version](https://poser.pugx.org/jerodev/laravel-font-awesome/v/stable?format=flat-square)](https://packagist.org/packages/jerodev/laravel-font-awesome)
+[![License](https://poser.pugx.org/jerodev/laravel-font-awesome/license?format=flat-square)](https://packagist.org/packages/jerodev/laravel-font-awesome)
 [![Travis (.com)](https://img.shields.io/travis/com/jerodev/laravel-font-awesome.svg?style=flat-square)](https://travis-ci.com/jerodev/laravel-font-awesome)
-[![StyleCI](https://github.styleci.io/repos/193088933/shield?branch=master)](https://github.styleci.io/repos/193088933) 
-[![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/jerodev/laravel-font-awesome/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/jerodev/laravel-font-awesome/?branch=master) 
+[![StyleCI](https://github.styleci.io/repos/193088933/shield?branch=master)](https://github.styleci.io/repos/193088933)
+[![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/jerodev/laravel-font-awesome/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/jerodev/laravel-font-awesome/?branch=master)
 
 This package will render font awesome icons in your views on the server side. This removes the need to add extra JavaScript or webfont resources on the client side and in doing so reduces the size of your website significantly.
 
 This is achieved by replacing the icons with their svg counterpart before sending the response to the client.
 
-- [Requirements](#requirements)
-- [Installation](#installation)
-  - [Service provider](#service-provider)
-- [Usage](#usage)
-  - [Middleware](#middleware)
-- [Configuration](#configuration)
-- [To Do](#to-do)
+``` html
+<!-- Turns this -->
+@fas('circle')
+  
+<!-- Into this -->
+<svg viewBox="0 0 512 512" class="svg-inline--fa fa-w-16 fa-circle">
+    <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"/>
+</svg>
+```
 
 ## Requirements
 
@@ -27,7 +29,7 @@ This is achieved by replacing the icons with their svg counterpart before sendin
 Install the package using [Composer](https://getcomposer.org/).
 
     composer require jerodev/laravel-font-awesome
-    
+
 ### Service Provider
 
 The package will be auto-discovered by Laravel. If you disabled auto-discovery, you should add the following provider to your `config/app.php` file.
@@ -54,7 +56,7 @@ The order in which the libraries are scanned is `regular`, `brands`, `solid`. Bu
 
 ### Middleware
 
-This package includes a middleware that injects a minimal stylesheet into your views on render. By default, this middleware is added to the `web` middleware group. 
+This package includes a middleware that injects a minimal stylesheet into your views on render. By default, this middleware is added to the `web` middleware group.
 
 If you don't want to have the style injected automatically, you can disable `middleware.all_requests` in the [configuration](#configuration). In this case, you will have to add the middleware to selected routes yourself or add your own CSS.
 
@@ -66,7 +68,7 @@ The middleware you should use is `\Jerodev\LaraFontAwesome\Middleware\InjectStyl
 The package contains a few configuration options that can be modified by first publishing the config file using the command below. This will create a `fontawesome.php` file in your `config` folder.
 
     php artisan vendor:publish --provider="Jerodev\LaraFontAwesome\FontAwesomeServiceProvider"
-    
+
 | Key  | Type | Default value | Description |
 | --- | --- | --- | --- |
 | `libraries` | string[]  | `['regular', 'brands', 'solid']` | The icon libraries that will be available. This is also the order in which the libraries will be searched for icons. |
