@@ -2,7 +2,7 @@
 
 namespace Jerodev\LaraFontAwesome;
 
-use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Jerodev\LaraFontAwesome\Middleware\InjectStyleSheet;
 
@@ -23,12 +23,12 @@ class FontAwesomeServiceProvider extends ServiceProvider
 
     private function registerBladeDirectives()
     {
-        BladeCompiler::directive('fa', function ($expression) {
+        Blade::directive('fa', function ($expression) {
             return BladeRenderer::renderGeneric($expression);
         });
 
         foreach (config('fontawesome.libraries') as $library) {
-            BladeCompiler::directive('fa' . $library[0], function ($expression) use ($library) {
+            Blade::directive('fa' . $library[0], function ($expression) use ($library) {
                 return BladeRenderer::renderWithLibrary($expression, $library);
             });
         }
