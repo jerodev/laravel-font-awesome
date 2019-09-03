@@ -21,8 +21,12 @@ This is achieved by replacing the icons with their svg counterpart before sendin
 
 ## Requirements
 
-- PHP >= 7.1.3
-- Laravel >= 5.6
+| Requirement | Version |
+| --- | --- |
+| PHP | >= 7.1.3 |
+| Laravel | >= 5.6 \| 6.0 |
+
+> \* Higher PHP versions might be required for newest Laravel versions.
 
 ## Installation
 

@@ -35,7 +35,7 @@
         }
     },
     "require": {
-        "illuminate/support": "5.6.x|5.7.x|5.8.x",
+        "illuminate/support": "~5.6|^6.0",
         "fortawesome/font-awesome": "^5.10"
     },
     "require-dev": {

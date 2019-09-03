@@ -25,7 +25,7 @@ class InjectStyleSheet
     private function injectStyleSheet($response)
     {
         $content = $response->getContent();
-        $content = str_replace('</head>', '<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@5.9.0/css/svg-with-js.min.css" /></head>', $content);
+        $content = str_replace('</head>', '<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@5.10.2/css/svg-with-js.min.css" /></head>', $content);
         $response->setContent($content);
 
         return $response;

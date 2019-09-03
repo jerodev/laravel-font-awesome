@@ -9,6 +9,8 @@ matrix:
       env: LARAVEL='5.7.*' TESTBENCH='3.7.*'
     - php: 7.3
       env: LARAVEL='5.8.*' TESTBENCH='3.8.*'
+    - php: 7.3
+      env: LARAVEL='^6.0' TESTBENCH='3.9.x@dev'
 
 cache:
   directories:
