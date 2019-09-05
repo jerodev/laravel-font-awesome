@@ -38,7 +38,7 @@ Install the package using [Composer](https://getcomposer.org/).
 
 The package will be auto-discovered by Laravel. If you disabled auto-discovery, you should add the following provider to your `config/app.php` file.
 
-    \Jerodev\LaraFontAwesome\FontAwesomeServviceProvider::class,
+    \Jerodev\LaraFontAwesome\FontAwesomeServiceProvider::class,
 
 ## Usage
 
