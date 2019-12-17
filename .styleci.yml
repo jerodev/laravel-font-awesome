@@ -5,6 +5,7 @@ risky: true
 disabled:
   - align_double_arrow
   - concat_without_spaces
+  - elseif
   - phpdoc_align
 
 finder:

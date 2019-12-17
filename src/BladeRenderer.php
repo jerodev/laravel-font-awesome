@@ -14,6 +14,7 @@ class BladeRenderer
      *
      * @param string $expression The parameter string passed to the blade directive.
      * @param string $library Forcing the renderer to render the icon using this library.
+     *
      * @return string
      */
     public static function renderGeneric(string $expression, ?string $library = null): string
@@ -40,6 +41,7 @@ class BladeRenderer
      *
      * @param string $expression
      * @param string|null $library
+     *
      * @return Icon
      */
     private static function parseExpression(string $expression, ?string $library = null): Icon
