@@ -46,12 +46,12 @@ class IconRenderer
 
             $path = \sprintf($path_str, $folder);
             if (\file_exists($path)) {
-                $svg = \file_get_contents($path);
+                $svg = \trim(\file_get_contents($path));
                 break;
             }
         }
 
-        return \trim($svg) ?: null;
+        return $svg;
     }
 
     /**

@@ -29,7 +29,7 @@ class BladeRenderer
             );
         }
 
-        return implode([
+        return \implode([
             '<?php echo \\',
             IconRenderer::class,
             "::renderSvg({$icon->getName()}, {$icon->getCssClasses()}, {$icon->getLibrary()}); ?>",

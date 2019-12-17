@@ -20,12 +20,12 @@ class FontAwesomeServiceProvider extends ServiceProvider
 
     private function registerBladeDirectives()
     {
-        $this->app['blade.compiler']->directive('fa', function ($expression) {
+        $this->app['blade.compiler']->directive('fa', static function ($expression) {
             return BladeRenderer::renderGeneric($expression);
         });
 
         foreach (\config('fontawesome.libraries') as $library) {
-            $this->app['blade.compiler']->directive('fa' . $library[0], function ($expression) use ($library) {
+            $this->app['blade.compiler']->directive('fa' . $library[0], static function ($expression) use ($library) {
                 return BladeRenderer::renderGeneric($expression, $library);
             });
         }

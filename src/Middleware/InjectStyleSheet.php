@@ -3,10 +3,12 @@
 namespace Jerodev\LaraFontAwesome\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-class InjectStyleSheet
+final class InjectStyleSheet
 {
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
 
@@ -22,7 +24,7 @@ class InjectStyleSheet
         return $this->injectStyleSheet($response);
     }
 
-    private function injectStyleSheet($response)
+    private function injectStyleSheet(Response $response)
     {
         $content = $response->getContent();
         $content = \str_replace('</head>', '<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@5.12.0/css/svg-with-js.min.css" /></head>', $content);

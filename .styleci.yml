@@ -8,6 +8,11 @@ disabled:
   - elseif
   - phpdoc_align
 
+enabled:
+  - native_constant_invocation
+  - native_function_invocation
+  - static_lambda
+
 finder:
   exclude:
     - vendor
