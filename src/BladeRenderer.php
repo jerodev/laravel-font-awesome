@@ -48,21 +48,18 @@ class BladeRenderer
     {
         $part = '';
         $parts = [];
-        $closure_stack = [];
         $in_string = null;
 
         for ($i = 0; $i < \strlen($expression); $i++) {
             $char = $expression[$i];
 
-            if ($char === ',' && is_null($in_string) && count($closure_stack) === 0) {
-                $parts[] = trim($part);
+            if ($char === ',' && \is_null($in_string)) {
+                $parts[] = \trim($part);
                 $part = '';
                 continue;
             }
 
-            if (\in_array($char, ['('])) {
-                $closure_stack[] = $char;
-            } else if (\in_array($char, ['\'', '"'])) {
+            if (\in_array($char, ['\'', '"'])) {
                 if ($in_string === $char) {
                     $in_string = null;
                 } else {
@@ -70,7 +67,7 @@ class BladeRenderer
                 }
             }
 
-            $part .= trim($char);
+            $part .= \trim($char);
         }
 
         $parts[] = $part;

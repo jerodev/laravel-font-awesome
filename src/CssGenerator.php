@@ -33,7 +33,7 @@ class CssGenerator
         $start = \strpos($svg, '<svg');
         $end = \strpos($svg, '>', $start);
 
-        $css_classes = implode(' ',
+        $css_classes = \implode(' ',
             \array_unique(
                 \array_filter(
                     \array_merge(

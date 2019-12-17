@@ -22,6 +22,8 @@ class Icon
 
     /**
      * Indicates whether the icon contains any variables or expressions.
+     * The check is very basic, but matches most used use-cases.
+     * Might need some improvement in the future.
      *
      * @return bool
      */

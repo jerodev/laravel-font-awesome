@@ -24,7 +24,7 @@ class FontAwesomeServiceProvider extends ServiceProvider
             return BladeRenderer::renderGeneric($expression);
         });
 
-        foreach (config('fontawesome.libraries') as $library) {
+        foreach (\config('fontawesome.libraries') as $library) {
             $this->app['blade.compiler']->directive('fa' . $library[0], function ($expression) use ($library) {
                 return BladeRenderer::renderGeneric($expression, $library);
             });

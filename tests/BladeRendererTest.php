@@ -47,6 +47,13 @@ class BladeRendererTest extends TestCase
         $this->assertStringEndsWith('(\'laravel\', $class, \'brands\'); ?>', $render);
     }
 
+    public function testRenderWithCommaInClass(): void
+    {
+        $render = BladeRenderer::renderGeneric('$var, \'foo,bar\'', 'brands');
+
+        $this->assertStringEndsWith('($var, \'foo,bar\', \'brands\'); ?>', $render);
+    }
+
     public function testStaticFarRender(): void
     {
         $render = BladeRenderer::renderGeneric('\'circle\'', 'regular');
