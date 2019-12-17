@@ -28,18 +28,18 @@ class IconRendererTest extends TestCase
     public function testResolveSvg(string $icon, ?string $result)
     {
         $this->assertEquals(
-            str_replace('<path fill="currentColor"', '<path', preg_replace('/ class=".*?"/', '', IconRenderer::renderSvg($icon))),
-            str_replace(' xmlns="http://www.w3.org/2000/svg"', '', $result)
+            \str_replace('<path fill="currentColor"', '<path', \preg_replace('/ class=".*?"/', '', IconRenderer::renderSvg($icon))),
+            \str_replace(' xmlns="http://www.w3.org/2000/svg"', '', $result)
         );
     }
 
     public static function svgTestCaseProvider(): array
     {
         return [
-            ['building', file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/regular/building.svg')],
-            ['fa-laravel', file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/brands/laravel.svg')],
-            ['fa fa-circle', file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/regular/circle.svg')],
-            ['far fa-square', file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/regular/square.svg')],
+            ['building', \trim(\file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/regular/building.svg'))],
+            ['fa-laravel', \trim(\file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/brands/laravel.svg'))],
+            ['fa fa-circle', \trim(\file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/regular/circle.svg'))],
+            ['far fa-square', \trim(\file_get_contents(__DIR__ . '/../vendor/fortawesome/font-awesome/svgs/regular/square.svg'))],
             ['foo-bar', null],
         ];
     }

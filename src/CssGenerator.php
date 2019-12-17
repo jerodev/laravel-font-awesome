@@ -30,21 +30,21 @@ class CssGenerator
      */
     private static function addSvgClasses(string $svg, array $css_classes = []): string
     {
-        $start = strpos($svg, '<svg');
-        $end = strpos($svg, '>', $start);
+        $start = \strpos($svg, '<svg');
+        $end = \strpos($svg, '>', $start);
 
         $css_classes = implode(' ',
-            array_unique(
-                array_filter(
-                    array_merge(
-                        self::getFontAwesomeCssClasses(substr($svg, $start, $end - $start)),
+            \array_unique(
+                \array_filter(
+                    \array_merge(
+                        self::getFontAwesomeCssClasses(\substr($svg, $start, $end - $start)),
                         $css_classes
                     )
                 )
             )
         );
 
-        return substr_replace($svg, " class=\"$css_classes\"", $end, 0);
+        return \substr_replace($svg, " class=\"$css_classes\"", $end, 0);
     }
 
     /**
@@ -58,10 +58,10 @@ class CssGenerator
     {
         $css_classes = ['svg-inline--fa'];
 
-        if (($start = strpos($svg, 'viewBox="')) !== false) {
+        if (($start = \strpos($svg, 'viewBox="')) !== false) {
             $start += 9;
-            $end = strpos($svg, '"', $start);
-            $numbers = explode(' ', substr($svg, $start, $end - $start));
+            $end = \strpos($svg, '"', $start);
+            $numbers = \explode(' ', \substr($svg, $start, $end - $start));
             $w = $numbers[2] / $numbers[3] * 16;
 
             $css_classes[] = "fa-w-$w";
@@ -79,6 +79,6 @@ class CssGenerator
      */
     private static function addPathAttributes(string $svg): string
     {
-        return str_replace('<path ', '<path fill="currentColor" ', $svg);
+        return \str_replace('<path ', '<path fill="currentColor" ', $svg);
     }
 }
