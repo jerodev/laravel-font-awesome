@@ -23,10 +23,12 @@ This is achieved by replacing the icons with their svg counterpart before sendin
 
 | Requirement | Version |
 | --- | --- |
-| PHP | >= 7.1.3 |
-| Laravel | >= 5.6 \| 6.0 |
+| PHP | >= 7.2 |
+| Laravel | 6.x |
 
-> \* Higher PHP versions might be required for newest Laravel versions.
+### Laravel 5.x
+
+For Laravel 5.6 and up, use version v1.x of this package
 
 ## Installation
 
@@ -60,12 +62,17 @@ The order in which the libraries are scanned is `regular`, `brands`, `solid`. Bu
 
 ### Middleware
 
-This package includes a middleware that injects a minimal stylesheet into your views on render. By default, this middleware is added to the `web` middleware group.
+> :warning: Since version 2.0, the middleware is no longer automatically injected. You will have to add this to the routes where needed.
 
-If you don't want to have the style injected automatically, you can disable `middleware.all_requests` in the [configuration](#configuration). In this case, you will have to add the middleware to selected routes yourself or add your own CSS.
+This package includes a middleware, [`InjectStyleSheet`](src/Middleware/InjectStyleSheet.php), that injects a minimal stylesheet into your views on render.
 
-The middleware you should use is `\Jerodev\LaraFontAwesome\Middleware\InjectStyleSheet::class`.
+The middleware can be added to your routes [as documented by Laravel](https://laravel.com/docs/master/middleware#assigning-middleware-to-routes):
 
+```php
+Route::middleware(InjectStyleSheet::class)->group(static function () {
+    // Create routes here.
+});
+```
 
 ## Configuration
 
@@ -76,10 +83,3 @@ The package contains a few configuration options that can be modified by first p
 | Key  | Type | Default value | Description |
 | --- | --- | --- | --- |
 | `libraries` | string[]  | `['regular', 'brands', 'solid']` | The icon libraries that will be available. This is also the order in which the libraries will be searched for icons. |
-| `middelware.all_requests` | boolean  | `true` | When enabled, the stylesheet needed for the icons will automatically be injected on every request returning html. |
-
-## To Do
-
-Currently the package only supports basic icon rendering. There is no support for special cases, such as: [stacking icons](https://fontawesome.com/how-to-use/on-the-web/styling/stacking-icons) or [masking icons](https://fontawesome.com/how-to-use/on-the-web/styling/masking), because I never used these myself.
-
-In the future however, I want to add these as well to make this package support the full api that is available using the Font Awesome library.
