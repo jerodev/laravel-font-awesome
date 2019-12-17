@@ -69,6 +69,7 @@ class BladeRendererTest extends TestCase
 
     /**
      * @dataProvider variableRenderingDataProvider
+     *
      * @param string[] $input
      * @param string $expected
      */

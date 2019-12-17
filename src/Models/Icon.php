@@ -45,19 +45,19 @@ class Icon
 
                 switch ($char) {
                     case '"':
-                        if (! $in_string) {
-                            $in_double_quote_string = ! $in_double_quote_string;
+                        if (!$in_string) {
+                            $in_double_quote_string = !$in_double_quote_string;
                         }
                         break;
 
                     case '\'':
-                        if (! $in_double_quote_string) {
-                            $in_string = ! $in_string;
+                        if (!$in_double_quote_string) {
+                            $in_string = !$in_string;
                         }
                         break;
 
                     case '$':
-                        if (! $in_string && ! $in_double_quote_string) {
+                        if (!$in_string && !$in_double_quote_string) {
                             return false;
                         }
                         if ($in_double_quote_string && $last_char !== '\\') {
