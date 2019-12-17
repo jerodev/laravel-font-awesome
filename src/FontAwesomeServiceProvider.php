@@ -16,7 +16,6 @@ class FontAwesomeServiceProvider extends ServiceProvider
         );
 
         $this->registerBladeDirectives();
-        $this->registerMiddleware(InjectStyleSheet::class);
     }
 
     private function registerBladeDirectives()
@@ -29,13 +28,6 @@ class FontAwesomeServiceProvider extends ServiceProvider
             $this->app['blade.compiler']->directive('fa' . $library[0], function ($expression) use ($library) {
                 return BladeRenderer::renderGeneric($expression, $library);
             });
-        }
-    }
-
-    private function registerMiddleware($middleware)
-    {
-        if (config('fontawesome.middleware.all_requests')) {
-            $this->app['router']->pushMiddlewareToGroup('web', $middleware);
         }
     }
 }
