@@ -72,7 +72,7 @@ class BladeRenderer
 
         $parts[] = $part;
 
-        $icon = new Icon($parts[0], "'{$library}'");
+        $icon = new Icon($parts[0], $library ? "'{$library}'" : 'null');
         if (\count($parts) > 1) {
             $icon->setCssClasses($parts[1]);
             if (\count($parts) > 2) {

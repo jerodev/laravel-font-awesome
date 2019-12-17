@@ -22,8 +22,6 @@ class Icon
 
     /**
      * Indicates whether the icon contains any variables or expressions.
-     * The check is very basic, but matches most used use-cases.
-     * Might need some improvement in the future.
      *
      * @return bool
      */
@@ -39,13 +37,36 @@ class Icon
                 return false;
             }
 
-            if ($value[0] === '"') {
+            $in_double_quote_string = false;
+            $in_string = false;
+            $last_char = null;
+            for ($i = 0; $i < \strlen($value); $i++) {
+                $char = $value[$i];
 
-                // $ between " not preceded by \
-                $pos = \strpos('$', $value);
-                if ($pos !== false && $value[$pos - 1] !== '\\') {
-                    return false;
+                switch ($char) {
+                    case '"':
+                        if (! $in_string) {
+                            $in_double_quote_string = ! $in_double_quote_string;
+                        }
+                        break;
+
+                    case '\'':
+                        if (! $in_double_quote_string) {
+                            $in_string = ! $in_string;
+                        }
+                        break;
+
+                    case '$':
+                        if (! $in_string && ! $in_double_quote_string) {
+                            return false;
+                        }
+                        if ($in_double_quote_string && $last_char !== '\\') {
+                            return false;
+                        }
+                        break;
                 }
+
+                $last_char = $char;
             }
         }
 

@@ -47,13 +47,6 @@ class BladeRendererTest extends TestCase
         $this->assertStringEndsWith('(\'laravel\', $class, \'brands\'); ?>', $render);
     }
 
-    public function testRenderWithCommaInClass(): void
-    {
-        $render = BladeRenderer::renderGeneric('$var, \'foo,bar\'', 'brands');
-
-        $this->assertStringEndsWith('($var, \'foo,bar\', \'brands\'); ?>', $render);
-    }
-
     public function testStaticFarRender(): void
     {
         $render = BladeRenderer::renderGeneric('\'circle\'', 'regular');
@@ -72,5 +65,38 @@ class BladeRendererTest extends TestCase
             '<svg viewBox="0 0 512 512" class="svg-inline--fa fa-w-16 fa-circle"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"/></svg>',
             $render
         );
+    }
+
+    /**
+     * @dataProvider variableRenderingDataProvider
+     * @param string[] $input
+     * @param string $expected
+     */
+    public function testVariableRendering(array $input, string $expected): void
+    {
+        $render = BladeRenderer::renderGeneric(...$input);
+
+        $this->assertStringEndsWith("($expected); ?>", $render);
+    }
+
+    public function variableRenderingDataProvider()
+    {
+        yield [
+            [
+                '$var, \'foo,bar\'',
+                'brands',
+            ],
+            '$var, \'foo,bar\', \'brands\'',
+        ];
+
+        yield [
+            ['"fa-$var"'],
+            '"fa-$var", null, null',
+        ];
+
+        yield [
+            ['$laravel'],
+            '$laravel, null, null',
+        ];
     }
 }
