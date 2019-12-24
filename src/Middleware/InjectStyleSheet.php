@@ -3,15 +3,19 @@
 namespace Jerodev\LaraFontAwesome\Middleware;
 
 use Closure;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as SymfonyBaseResponse;
 
-class InjectStyleSheet
+final class InjectStyleSheet
 {
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
 
         if (
-            ($response->headers->has('Content-Type') && strpos($response->headers->get('Content-Type'), 'html') === false)
+            $response instanceof RedirectResponse
+            || ($response->headers->has('Content-Type') && \strpos($response->headers->get('Content-Type'), 'html') === false)
             || $request->getRequestFormat() !== 'html'
             || $response->getContent() === false
             || $request->isXmlHttpRequest()
@@ -22,10 +26,10 @@ class InjectStyleSheet
         return $this->injectStyleSheet($response);
     }
 
-    private function injectStyleSheet($response)
+    private function injectStyleSheet(SymfonyBaseResponse $response)
     {
         $content = $response->getContent();
-        $content = str_replace('</head>', '<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@5.10.2/css/svg-with-js.min.css" /></head>', $content);
+        $content = \str_replace('</head>', '<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@5.12.0/css/svg-with-js.min.css" /></head>', $content);
         $response->setContent($content);
 
         return $response;
