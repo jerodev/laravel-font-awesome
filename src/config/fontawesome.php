@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'icon_path' => __DIR__ . '/../../../../fortawesome/font-awesome/svgs/',
+    'icon_path' => \base_path('/vendor/fortawesome/font-awesome/svgs/'),
 
     /*
     |--------------------------------------------------------------------------
