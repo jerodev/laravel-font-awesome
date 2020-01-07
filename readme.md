@@ -44,6 +44,22 @@ The package will be auto-discovered by Laravel. If you disabled auto-discovery, 
 
 ## Usage
 
+### Middleware
+
+> :warning: Since version 2.0, the middleware is no longer automatically injected. You will have to add this to the routes where needed.
+
+This package includes a middleware, [`InjectStyleSheet`](src/Middleware/InjectStyleSheet.php), that injects a minimal stylesheet into your views on render.
+
+The middleware can be added to your routes [as documented by Laravel](https://laravel.com/docs/master/middleware#assigning-middleware-to-routes):
+
+```php
+Route::middleware(InjectStyleSheet::class)->group(static function () {
+    // Create routes here.
+});
+```
+
+### Views
+
 To use Font Awesome icons in your view there are a few new blade directives.
 
 ``` php
@@ -60,19 +76,15 @@ When using the `@fa()` directive. The package will scan the different Font Aweso
 
 The order in which the libraries are scanned is `regular`, `brands`, `solid`. But this can be modified in the [configuration](#configuration).
 
-### Middleware
+### Parameters
 
-> :warning: Since version 2.0, the middleware is no longer automatically injected. You will have to add this to the routes where needed.
+The `@fa()` function can take three parameters of which only the first is required.
 
-This package includes a middleware, [`InjectStyleSheet`](src/Middleware/InjectStyleSheet.php), that injects a minimal stylesheet into your views on render.
-
-The middleware can be added to your routes [as documented by Laravel](https://laravel.com/docs/master/middleware#assigning-middleware-to-routes):
-
-```php
-Route::middleware(InjectStyleSheet::class)->group(static function () {
-    // Create routes here.
-});
-```
+| Parameter  | Type | Description |
+| --- | --- | --- |
+| `name` | string | The name of the icon |
+| `css_class` | string | Extra css classes to be appended to the svg output |
+| `force_svg_href` | bool | Force the output to be an [svg href link](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href#use). Can be useful in loops.
 
 ## Configuration
 
@@ -83,4 +95,4 @@ The package contains a few configuration options that can be modified by first p
 | Key  | Type | Default value | Description |
 | --- | --- | --- | --- |
 | `libraries` | string[]  | `['regular', 'brands', 'solid']` | The icon libraries that will be available. This is also the order in which the libraries will be searched for icons. |
-| `svg_href` | bool| `true` | Use [svg href](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href#use) for consecutive icons. |
+| `svg_href` | bool| `true` | Use [svg href links](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href#use) for consecutive icons. |

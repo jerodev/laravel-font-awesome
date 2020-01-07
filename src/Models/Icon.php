@@ -13,11 +13,15 @@ class Icon
     /** @var string */
     private $cssClasses;
 
+    /** @var bool */
+    private $forceSvgHref;
+
     public function __construct(string $name, string $library = 'null')
     {
         $this->name = $name;
         $this->library = $library;
         $this->cssClasses = 'null';
+        $this->forceSvgHref = false;
     }
 
     /**
@@ -31,6 +35,7 @@ class Icon
             $this->name,
             $this->library,
             $this->cssClasses,
+            $this->getForceSvgHrefAsString(),
         ];
         foreach ($values as $value) {
             if ($value[0] === '$') {
@@ -73,6 +78,11 @@ class Icon
         return true;
     }
 
+    public function setForceSvgHref(bool $force = true): void
+    {
+        $this->forceSvgHref = $force;
+    }
+
     public function setLibrary(string $library): void
     {
         if ($library) {
@@ -112,6 +122,16 @@ class Icon
         }
 
         return $this->cssClasses;
+    }
+
+    public function getForceSvgHref(): bool
+    {
+        return $this->forceSvgHref;
+    }
+
+    public function getForceSvgHrefAsString(): string
+    {
+        return $this->getForceSvgHref() ? 'true' : 'false';
     }
 
     private function cleanValue(string $value): ?string

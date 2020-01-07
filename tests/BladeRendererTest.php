@@ -30,21 +30,21 @@ class BladeRendererTest extends TestCase
     {
         $render = BladeRenderer::renderGeneric('$expression', 'brands');
 
-        $this->assertStringEndsWith('($expression, null, \'brands\'); ?>', $render);
+        $this->assertStringEndsWith('($expression, null, \'brands\', false); ?>', $render);
     }
 
     public function testFabRenderWithVariableAndClass(): void
     {
         $render = BladeRenderer::renderGeneric('$expression, \'spin\'', 'brands');
 
-        $this->assertStringEndsWith('($expression, \'spin\', \'brands\'); ?>', $render);
+        $this->assertStringEndsWith('($expression, \'spin\', \'brands\', false); ?>', $render);
     }
 
     public function testRenderWithVariableClass(): void
     {
         $render = BladeRenderer::renderGeneric('\'laravel\', $class', 'brands');
 
-        $this->assertStringEndsWith('(\'laravel\', $class, \'brands\'); ?>', $render);
+        $this->assertStringEndsWith('(\'laravel\', $class, \'brands\', false); ?>', $render);
     }
 
     public function testStaticFarRender(): void
@@ -87,17 +87,27 @@ class BladeRendererTest extends TestCase
                 '$var, \'foo,bar\'',
                 'brands',
             ],
-            '$var, \'foo,bar\', \'brands\'',
+            '$var, \'foo,bar\', \'brands\', false',
         ];
 
         yield [
             ['"fa-$var"'],
-            '"fa-$var", null, null',
+            '"fa-$var", null, null, false',
         ];
 
         yield [
             ['$laravel'],
-            '$laravel, null, null',
+            '$laravel, null, null, false',
+        ];
+
+        yield [
+            ['$laravel, null, true'],
+            '$laravel, null, null, true',
+        ];
+
+        yield [
+            ['$laravel, null, true', 'brands'],
+            '$laravel, null, \'brands\', true',
         ];
     }
 }

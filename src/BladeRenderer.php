@@ -25,14 +25,15 @@ class BladeRenderer
             return resolve(IconRenderer::class)->renderSvg(
                 $icon->getName(true),
                 $icon->getCssClasses(true),
-                $icon->getLibrary(true)
+                $icon->getLibrary(true),
+                $icon->getForceSvgHref()
             );
         }
 
         return \implode([
             '<?php echo app(\'',
             IconRenderer::class,
-            "')->renderSvg({$icon->getName()}, {$icon->getCssClasses()}, {$icon->getLibrary()}); ?>",
+            "')->renderSvg({$icon->getName()}, {$icon->getCssClasses()}, {$icon->getLibrary()}, {$icon->getForceSvgHrefAsString()}); ?>",
         ]);
     }
 
@@ -73,11 +74,12 @@ class BladeRenderer
         $parts[] = $part;
 
         $icon = new Icon($parts[0], $library ? "'{$library}'" : 'null');
-        if (\count($parts) > 1) {
-            $icon->setCssClasses($parts[1]);
-            if (\count($parts) > 2) {
-                $icon->setLibrary($parts[2]);
-            }
+        switch (\count($parts)) {
+            case 3:
+                $icon->setForceSvgHref(filter_var($parts[2], FILTER_VALIDATE_BOOLEAN));
+
+            case 2:
+                $icon->setCssClasses($parts[1]);
         }
 
         return $icon;

@@ -21,15 +21,16 @@ class IconRenderer
      * @param string $icon The name of the icon.
      * @param string|null $css_classes Extra css classes to add to the svg.
      * @param string|null $library The icon library to use.
+     * @param bool $force_svg_href Force rendering as svg use:href.
      *
      * @return string|null
      */
-    public function renderSvg(string $icon, ?string $css_classes = null, ?string $library = null): ?string
+    public function renderSvg(string $icon, ?string $css_classes = null, ?string $library = null, bool $force_svg_href = false): ?string
     {
         $icon = $this->normalizeIconName($icon);
 
         $icon_id = 'fa' . ($library ? $library[0] : null) . "-{$icon}";
-        if (\config('fontawesome.svg_href') && \in_array($icon_id, $this->rendered_icons, true)) {
+        if (\config('fontawesome.svg_href') && ($force_svg_href || \in_array($icon_id, $this->rendered_icons, true))) {
             return $this->renderSvgHref($icon_id, $css_classes);
         }
 
@@ -53,6 +54,7 @@ class IconRenderer
      *
      * @param string $icon_id
      * @param string|null $css_classes
+     *
      * @return string
      */
     private function renderSvgHref(string $icon_id, ?string $css_classes = null): string
