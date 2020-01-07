@@ -22,7 +22,7 @@ class BladeRenderer
         $icon = self::parseExpression($expression, $library);
 
         if ($icon->isStatic()) {
-            return IconRenderer::renderSvg(
+            return resolve(IconRenderer::class)->renderSvg(
                 $icon->getName(true),
                 $icon->getCssClasses(true),
                 $icon->getLibrary(true)
@@ -30,9 +30,9 @@ class BladeRenderer
         }
 
         return \implode([
-            '<?php echo \\',
+            '<?php echo app(\'',
             IconRenderer::class,
-            "::renderSvg({$icon->getName()}, {$icon->getCssClasses()}, {$icon->getLibrary()}); ?>",
+            "')->renderSvg({$icon->getName()}, {$icon->getCssClasses()}, {$icon->getLibrary()}); ?>",
         ]);
     }
 

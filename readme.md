@@ -83,3 +83,4 @@ The package contains a few configuration options that can be modified by first p
 | Key  | Type | Default value | Description |
 | --- | --- | --- | --- |
 | `libraries` | string[]  | `['regular', 'brands', 'solid']` | The icon libraries that will be available. This is also the order in which the libraries will be searched for icons. |
+| `svg_href` | bool| `true` | Use [svg href](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href#use) for consecutive icons. |

@@ -19,4 +19,4 @@ install:
 
 script:
   - vendor/bin/phpunit
-  - vendor/bin/phpstan analyse src tests --level=5
+  - vendor/bin/phpstan analyse

@@ -4,6 +4,17 @@ namespace Jerodev\LaraFontAwesome;
 
 class IconRenderer
 {
+    /** @var CssGenerator */
+    private $cssGenerator;
+
+    /** @var string[] */
+    private $rendered_icons = [];
+
+    public function __construct(CssGenerator $css_generator)
+    {
+        $this->cssGenerator = $css_generator;
+    }
+
     /**
      * Render a Font Awesome icon as an svg.
      *
@@ -13,17 +24,45 @@ class IconRenderer
      *
      * @return string|null
      */
-    public static function renderSvg(string $icon, ?string $css_classes = null, ?string $library = null): ?string
+    public function renderSvg(string $icon, ?string $css_classes = null, ?string $library = null): ?string
     {
-        $icon = self::normalizeIconName($icon);
+        $icon = $this->normalizeIconName($icon);
 
-        $svg = self::loadSvg($icon, $library);
+        $icon_id = 'fa' . ($library ? $library[0] : null) . "-{$icon}";
+        if (\config('fontawesome.svg_href') && \in_array($icon_id, $this->rendered_icons, true)) {
+            return $this->renderSvgHref($icon_id, $css_classes);
+        }
+
+        $svg = $this->loadSvg($icon, $library);
         if ($svg !== null) {
-            $svg = CssGenerator::mutateSvg($svg, \explode(' ', "$css_classes fa-$icon"));
-            $svg = \str_replace(' xmlns="http://www.w3.org/2000/svg"', '', $svg);
+            $svg = $this->cssGenerator->mutateSvg($svg, \explode(' ', "$css_classes fa-$icon"));
+
+            if (\config('fontawesome.svg_href')) {
+                $svg = \str_replace('xmlns="http://www.w3.org/2000/svg"', "id=\"{$icon_id}\"", $svg);
+                $this->rendered_icons[] = $icon_id;
+            } else {
+                $svg = \str_replace(' xmlns="http://www.w3.org/2000/svg"', '', $svg);
+            }
         }
 
         return $svg;
+    }
+
+    /**
+     * Render an svg linking to an already existing svg in the DOM.
+     *
+     * @param string $icon_id
+     * @param string|null $css_classes
+     * @return string
+     */
+    private function renderSvgHref(string $icon_id, ?string $css_classes = null): string
+    {
+        $css = null;
+        if ($css_classes !== null) {
+            $css = " class=\"{$css_classes}\"";
+        }
+
+        return "<svg{$css}><use href=\"#{$icon_id}\"/></svg>";
     }
 
     /**
@@ -34,7 +73,7 @@ class IconRenderer
      *
      * @return string|null
      */
-    private static function loadSvg(string $icon, ?string $library = null): ?string
+    private function loadSvg(string $icon, ?string $library = null): ?string
     {
         $svg = null;
         $path_str = \config('fontawesome.icon_path') . "%s/$icon.svg";
@@ -61,7 +100,7 @@ class IconRenderer
      *
      * @return string
      */
-    private static function normalizeIconName(string $icon): string
+    public function normalizeIconName(string $icon): string
     {
         $icon = \trim($icon);
 

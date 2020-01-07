@@ -16,6 +16,7 @@ class FontAwesomeServiceProvider extends ServiceProvider
         );
 
         $this->registerBladeDirectives();
+        $this->registerIconRenderer();
     }
 
     private function registerBladeDirectives()
@@ -29,5 +30,10 @@ class FontAwesomeServiceProvider extends ServiceProvider
                 return BladeRenderer::renderGeneric($expression, $library);
             });
         }
+    }
+
+    private function registerIconRenderer()
+    {
+        $this->app->singleton(IconRenderer::class);
     }
 }

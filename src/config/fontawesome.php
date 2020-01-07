@@ -31,4 +31,20 @@ return [
         'solid',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Use svg href attribute
+    |--------------------------------------------------------------------------
+    |
+    | The href attribute can be used to link to an already existing svg in the
+    | DOM, this way the svg code only needs to be loaded once if used multiple
+    | times.
+    |
+    | Very old browser might not support this feature:
+    | https://caniuse.com/#feat=mdn-svg_elements_use_href
+    |
+    */
+
+    'svg_href' => true,
+
 ];

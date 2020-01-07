@@ -12,7 +12,7 @@ class CssGenerator
      *
      * @return string
      */
-    public static function mutateSvg(string $svg, array $css_classes = []): string
+    public function mutateSvg(string $svg, array $css_classes = []): string
     {
         $svg = self::addSvgClasses($svg, $css_classes);
         $svg = self::addPathAttributes($svg);
@@ -28,7 +28,7 @@ class CssGenerator
      *
      * @return string
      */
-    private static function addSvgClasses(string $svg, array $css_classes = []): string
+    private function addSvgClasses(string $svg, array $css_classes = []): string
     {
         $start = \strpos($svg, '<svg');
         $end = \strpos($svg, '>', $start);
@@ -54,7 +54,7 @@ class CssGenerator
      *
      * @return string[]
      */
-    private static function getFontAwesomeCssClasses(string $svg): array
+    private function getFontAwesomeCssClasses(string $svg): array
     {
         $css_classes = ['svg-inline--fa'];
 
@@ -77,7 +77,7 @@ class CssGenerator
      *
      * @return string
      */
-    private static function addPathAttributes(string $svg): string
+    private function addPathAttributes(string $svg): string
     {
         return \str_replace('<path ', '<path fill="currentColor" ', $svg);
     }
