@@ -84,7 +84,7 @@ The `@fa()` function can take three parameters of which only the first is requir
 | --- | --- | --- |
 | `name` | string | The name of the icon |
 | `css_class` | string | Extra css classes to be appended to the svg output |
-| `force_svg_href` | bool | Force the output to be an [svg href link](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href#use). Can be useful in loops.
+| `force_svg_href` | bool | Force the output to be an [svg href link](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href#use) if possible. Can be useful in loops.
 
 ## Configuration
 

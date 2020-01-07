@@ -2,7 +2,7 @@
 
 namespace Jerodev\LaraFontAwesome\Models;
 
-class Icon
+final class Icon
 {
     /** @var string */
     private $name;
@@ -31,11 +31,14 @@ class Icon
      */
     public function isStatic(): bool
     {
+        if ($this->forceSvgHref) {
+            return false;
+        }
+
         $values = [
             $this->name,
             $this->library,
-            $this->cssClasses,
-            $this->getForceSvgHrefAsString(),
+            $this->cssClasses
         ];
         foreach ($values as $value) {
             if ($value[0] === '$') {
@@ -83,13 +86,6 @@ class Icon
         $this->forceSvgHref = $force;
     }
 
-    public function setLibrary(string $library): void
-    {
-        if ($library) {
-            $this->library = $library;
-        }
-    }
-
     public function setCssClasses(string $cssClasses): void
     {
         if ($cssClasses) {
@@ -122,16 +118,6 @@ class Icon
         }
 
         return $this->cssClasses;
-    }
-
-    public function getForceSvgHref(): bool
-    {
-        return $this->forceSvgHref;
-    }
-
-    public function getForceSvgHrefAsString(): string
-    {
-        return $this->getForceSvgHref() ? 'true' : 'false';
     }
 
     private function cleanValue(string $value): ?string

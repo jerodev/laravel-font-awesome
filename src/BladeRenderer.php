@@ -25,15 +25,14 @@ class BladeRenderer
             return resolve(IconRenderer::class)->renderSvg(
                 $icon->getName(true),
                 $icon->getCssClasses(true),
-                $icon->getLibrary(true),
-                $icon->getForceSvgHref()
+                $icon->getLibrary(true)
             );
         }
 
         return \implode([
             '<?php echo app(\'',
             IconRenderer::class,
-            "')->renderSvg({$icon->getName()}, {$icon->getCssClasses()}, {$icon->getLibrary()}, {$icon->getForceSvgHrefAsString()}); ?>",
+            "')->renderSvg({$icon->getName()}, {$icon->getCssClasses()}, {$icon->getLibrary()}); ?>",
         ]);
     }
 
