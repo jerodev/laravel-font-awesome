@@ -33,13 +33,13 @@ class SvgParser
 
     private function getAttribute(string $xml, string $attribute): ?string
     {
-        $start = strpos($xml, "{$attribute}=\"") + strlen($attribute) + 2;
+        $start = \strpos($xml, "{$attribute}=\"") + \strlen($attribute) + 2;
         if ($start === -1) {
             return null;
         }
 
-        $end = strpos($xml, '"', $start);
+        $end = \strpos($xml, '"', $start);
 
-        return substr($xml, $start, $end - $start);
+        return \substr($xml, $start, $end - $start);
     }
 }
