@@ -38,7 +38,7 @@ final class Icon
         $values = [
             $this->name,
             $this->library,
-            $this->cssClasses
+            $this->cssClasses,
         ];
         foreach ($values as $value) {
             if ($value[0] === '$') {

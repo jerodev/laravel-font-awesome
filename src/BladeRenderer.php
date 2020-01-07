@@ -75,7 +75,7 @@ class BladeRenderer
         $icon = new Icon($parts[0], $library ? "'{$library}'" : 'null');
         switch (\count($parts)) {
             case 3:
-                $icon->setForceSvgHref(filter_var($parts[2], FILTER_VALIDATE_BOOLEAN));
+                $icon->setForceSvgHref(\filter_var($parts[2], \FILTER_VALIDATE_BOOLEAN));
 
             case 2:
                 $icon->setCssClasses($parts[1]);
