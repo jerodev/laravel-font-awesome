@@ -15,9 +15,9 @@ class BladeRenderer
      * @param string $expression The parameter string passed to the blade directive.
      * @param string $library Forcing the renderer to render the icon using this library.
      *
-     * @return string
+     * @return string|null
      */
-    public static function renderGeneric(string $expression, ?string $library = null): string
+    public static function renderGeneric(string $expression, ?string $library = null): ?string
     {
         $icon = self::parseExpression($expression, $library);
 
@@ -76,6 +76,7 @@ class BladeRenderer
         switch (\count($parts)) {
             case 3:
                 $icon->setForceSvgHref(filter_var($parts[2], FILTER_VALIDATE_BOOLEAN));
+                // Fallthrough
 
             case 2:
                 $icon->setCssClasses($parts[1]);

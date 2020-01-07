@@ -79,23 +79,6 @@ class IconRenderer
     }
 
     /**
-     * Inject a symbol element in the svg string containing the icon id.
-     *
-     * @param string $svg
-     * @param string $icon_id
-     * @return string
-     */
-    private function injectSymbol(string $svg, string $icon_id): string
-    {
-        $pos = \strpos($svg, '>');
-        $svg = \substr_replace($svg, "><symbol id=\"{$icon_id}\">", $pos, 1);
-
-        $svg = \str_replace('</svg>', '</symbol></svg>', $svg);
-
-        return $svg;
-    }
-
-    /**
      * Format an icon name to the one used in the Font Awesome repository.
      *
      * @param string $icon The icon name to normalize.
