@@ -30,10 +30,10 @@ final class Svg
         $symbol_start = '';
         $symbol_end = '';
         if (\config('fontawesome.svg_href')) {
-            $symbol_start = "<symbol id=\"{$this->icon_id}\" viewBox=\"" . implode(' ', $this->view_box) . '">';
+            $symbol_start = "<symbol id=\"{$this->icon_id}\" viewBox=\"" . \implode(' ', $this->view_box) . '">';
             $symbol_end = "</symbol><use href=\"#{$this->icon_id}\"/>";
         } else {
-            $svg_viewBox = ' viewBox="' . implode(' ', $this->view_box) . '"';
+            $svg_viewBox = ' viewBox="' . \implode(' ', $this->view_box) . '"';
         }
 
         return "<svg class=\"{$this->renderCssClasses()}\"{$svg_viewBox}>{$symbol_start}<path fill=\"currentColor\" d=\"{$this->path}\" />{$symbol_end}</svg>";
@@ -46,10 +46,10 @@ final class Svg
 
     private function renderCssClasses(): string
     {
-        $classes = array_filter(explode(' ', $this->css_classes));
+        $classes = \array_filter(\explode(' ', $this->css_classes));
         $classes[] = 'svg-inline--fa';
         $classes[] = 'fa-w-' . ($this->view_box[2] / $this->view_box[3] * 16);
 
-        return implode(' ', array_unique($classes));
+        return \implode(' ', \array_unique($classes));
     }
 }
