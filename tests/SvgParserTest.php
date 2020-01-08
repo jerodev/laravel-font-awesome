@@ -17,6 +17,15 @@ class SvgParserTest extends TestCase
         $this->svgParser = \resolve(SvgParser::class);
     }
 
+    public function testMalformedViewBox(): void
+    {
+        $svg = new Svg('fa-href');
+        $svg->view_box = [0, 0];
+
+        $this->assertNull($svg->render());
+        $this->assertNull($svg->renderAsHref());
+    }
+
     public function testRenderHref(): void
     {
         $svg = new Svg('fa-href');
