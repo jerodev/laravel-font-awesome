@@ -42,7 +42,7 @@ class IconRendererTest extends TestCase
 
     public function testRenderSvgWithClass()
     {
-        $expected = '<svg class="foo-bar svg-inline--fa fa-w-16"><symbol id="fa-circle" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z" /></symbol><use href="#fa-circle"/></svg>';
+        $expected = '<svg class="foo-bar svg-inline--fa fa-w-16"><symbol id="fa-circle" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"/></symbol><use href="#fa-circle"/></svg>';
         $circle = $this->iconRenderer->renderSvg('circle', 'foo-bar');
 
         $this->assertEquals($expected, $circle);
@@ -50,7 +50,7 @@ class IconRendererTest extends TestCase
 
     public function testRenderWithLibrary()
     {
-        $expected = '<svg class="svg-inline--fa fa-w-16"><symbol id="fas-circle" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z" /></symbol><use href="#fas-circle"/></svg>';
+        $expected = '<svg class="svg-inline--fa fa-w-16"><symbol id="fas-circle" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"/></symbol><use href="#fas-circle"/></svg>';
         $circle = $this->iconRenderer->renderSvg('circle', null, 'solid');
 
         $this->assertEquals($expected, $circle);

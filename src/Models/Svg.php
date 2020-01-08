@@ -36,7 +36,7 @@ final class Svg
             $svg_viewBox = ' viewBox="' . \implode(' ', $this->view_box) . '"';
         }
 
-        return "<svg class=\"{$this->renderCssClasses()}\"{$svg_viewBox}>{$symbol_start}<path fill=\"currentColor\" d=\"{$this->path}\" />{$symbol_end}</svg>";
+        return "<svg class=\"{$this->renderCssClasses()}\"{$svg_viewBox}>{$symbol_start}<path fill=\"currentColor\" d=\"{$this->path}\"/>{$symbol_end}</svg>";
     }
 
     public function renderAsHref(): string
