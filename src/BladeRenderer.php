@@ -67,10 +67,10 @@ class BladeRenderer
                 }
             }
 
-            $part .= \trim($char);
+            $part .= $char;
         }
 
-        $parts[] = $part;
+        $parts[] = \trim($part);
 
         $icon = new Icon($parts[0], $library ? "'{$library}'" : 'null');
         switch (\count($parts)) {
