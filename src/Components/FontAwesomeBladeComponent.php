@@ -25,12 +25,14 @@ final class FontAwesomeBladeComponent extends Component
     /** @var SvgParser */
     private $svgParser;
 
-    public function __construct(IconViewBoxCache $cache, SvgParser $svgParser, string $name)
+    public function __construct(IconViewBoxCache $cache, SvgParser $svgParser, string $name, ?string $library = null, ?string $class = null)
     {
         $this->cache = $cache;
         $this->svgParser = $svgParser;
 
         $this->name = $this->getCleanIconName($name);
+        $this->library = $library;
+        $this->class = $class;
     }
 
     public function render()
