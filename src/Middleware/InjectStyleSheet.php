@@ -13,8 +13,7 @@ final class InjectStyleSheet
     {
         $response = $next($request);
 
-        if (
-            $response instanceof RedirectResponse
+        if ($response instanceof RedirectResponse
             || ($response->headers->has('Content-Type') && \strpos($response->headers->get('Content-Type'), 'html') === false)
             || $request->getRequestFormat() !== 'html'
             || $response->getContent() === false

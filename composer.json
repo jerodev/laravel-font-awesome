@@ -36,11 +36,19 @@
             ]
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jerodev/code-styles.git"
+        }
+    ],
     "require": {
         "illuminate/support": "7.x",
-        "fortawesome/font-awesome": "^5.12"
+        "fortawesome/font-awesome": "^5.12",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "require-dev": {
+        "jerodev/code-styles": "dev-master",
         "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^8.0",
         "orchestra/testbench": "5.x"

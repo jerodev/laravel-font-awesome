@@ -20,3 +20,4 @@ install:
 script:
   - vendor/bin/phpunit
   - vendor/bin/phpstan analyse
+  - vendor/bin/phpcs -p
