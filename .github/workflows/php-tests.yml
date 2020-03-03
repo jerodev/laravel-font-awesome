@@ -1,0 +1,43 @@
+name: php tests
+
+on:
+    - push
+    - pull_request
+
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: true
+            matrix:
+                php:
+                    - 7.2
+                    - 7.3
+                    - 7.4
+
+        name: PHP${{ matrix.php }}
+
+        steps:
+            -   name: Code checkout
+                uses: actions/checkout@v2
+
+            -   name: Cache dependencies
+                uses: actions/cache@v1
+                with:
+                    path: ~/.composer/cache/files
+                    key: laravel-font-awesome-php${{ matrix.php }}
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php
+                with:
+                    php-version: ${{ matrix.php }}
+
+            -   name: Install dependencies
+                run: composer update --no-interaction --prefer-dist --no-suggest
+
+            -   name: Run tests
+                run: |
+                    ./vendor/bin/phpcs -p
+                    ./vendor/bin/phpstan analyse
+                    ./vendor/bin/phpunit
