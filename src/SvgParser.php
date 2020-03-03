@@ -2,7 +2,6 @@
 
 namespace Jerodev\LaraFontAwesome;
 
-use Exception;
 use Jerodev\LaraFontAwesome\Models\Svg;
 
 class SvgParser

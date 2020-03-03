@@ -2,7 +2,9 @@
 
 namespace Jerodev\LaraFontAwesome;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Jerodev\LaraFontAwesome\Components\FontAwesomeBladeComponent;
 
 class FontAwesomeServiceProvider extends ServiceProvider
 {
@@ -15,25 +17,21 @@ class FontAwesomeServiceProvider extends ServiceProvider
             __DIR__ . '/config/fontawesome.php', 'fontawesome'
         );
 
-        $this->registerBladeDirectives();
-        $this->registerIconRenderer();
+        $this->registerComponents();
+        $this->registerDependencies();
     }
 
-    private function registerBladeDirectives()
+    private function registerComponents(): void
     {
-        $this->app['blade.compiler']->directive('fa', static function ($expression) {
-            return BladeRenderer::renderGeneric($expression);
-        });
-
-        foreach (\config('fontawesome.libraries') as $library) {
-            $this->app['blade.compiler']->directive('fa' . $library[0], static function ($expression) use ($library) {
-                return BladeRenderer::renderGeneric($expression, $library);
-            });
-        }
+        Blade::component(
+            $this->app->get('config')->get('fontawesome.component_name'),
+            FontAwesomeBladeComponent::class
+        );
     }
 
-    private function registerIconRenderer()
+    private function registerDependencies(): void
     {
-        $this->app->singleton(IconRenderer::class);
+        $this->app->singleton(IconViewBoxCache::class);
+        $this->app->singleton(SvgParser::class);
     }
 }

@@ -18,12 +18,11 @@ final class Svg
     /** @var int[]|null */
     public $view_box;
 
-    public function __construct(string $icon_id, ?string $css_classes = null)
+    public function __construct(string $icon_id, ?string $css_classes = null, ?array $view_box = null)
     {
         $this->icon_id = $icon_id;
         $this->css_classes = $css_classes;
-
-        $this->view_box = null;
+        $this->view_box = $view_box;
     }
 
     public function render(): ?string
@@ -52,7 +51,6 @@ final class Svg
         } catch (MalformedViewBoxException $e) {
             return null;
         }
-
     }
 
     /**

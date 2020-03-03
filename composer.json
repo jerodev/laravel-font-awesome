@@ -37,12 +37,12 @@
         }
     },
     "require": {
-        "illuminate/support": "6.x",
+        "illuminate/support": "7.x",
         "fortawesome/font-awesome": "^5.12"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^8.0",
-        "orchestra/testbench": "4.x"
+        "orchestra/testbench": "5.x"
     }
 }

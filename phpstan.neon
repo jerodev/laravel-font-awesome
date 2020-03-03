@@ -3,6 +3,3 @@ parameters:
     paths:
         - src
         - tests
-    ignoreErrors:
-        # Ignore Laravel/Lumen incompatibilites
-        - '#Cannot access offset [^\s]+ on Illuminate\\Contracts\\Foundation\\Application#'
