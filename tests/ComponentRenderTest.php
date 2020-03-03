@@ -8,6 +8,17 @@ use Jerodev\LaraFontAwesome\SvgParser;
 
 final class ComponentRenderTest extends TestCase
 {
+    public function testCustomCssClass(): void
+    {
+        $component = $this->createComponent('circle');
+        $component->class = 'foo';
+
+        $this->assertEquals(
+            '<svg class="foo svg-inline--fa fa-w-16"><symbol id="fa-circle" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"/></symbol><use href="#fa-circle"/></svg>',
+            $component->render()
+        );
+    }
+
     public function testSimpleIconRender(): void
     {
         $component = $this->createComponent('circle');

@@ -6,9 +6,9 @@ use Jerodev\LaraFontAwesome\Models\Svg;
 
 final class SvgParser
 {
-    public function parseXml(string $icon_id, string $xml, ?string $css_classes = null): Svg
+    public function parseXml(string $icon_id, string $xml): Svg
     {
-        $svg = new Svg($icon_id, $css_classes);
+        $svg = new Svg($icon_id);
         $svg->view_box = $this->parseViewBox(
             $this->getAttribute($xml, 'viewBox')
         );

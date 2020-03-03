@@ -54,6 +54,7 @@ final class FontAwesomeBladeComponent extends Component
             }
 
             $svg = $this->findSvg();
+            $svg->css_classes = $this->class;
 
             $this->cache->put($this->name, $this->library, $svg->view_box);
             $this->renderedCache = $svg->render();
@@ -85,8 +86,7 @@ final class FontAwesomeBladeComponent extends Component
 
         return $this->svgParser->parseXml(
             $this->cache->getIconId($this->name, $this->library),
-            $svg,
-            $this->class
+            $svg
         );
     }
 
