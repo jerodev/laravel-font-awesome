@@ -25,6 +25,9 @@ final class FontAwesomeBladeComponent extends Component
     /** @var SvgParser */
     private $svgParser;
 
+    /** @var string|null */
+    private $renderedCache;
+
     public function __construct(IconViewBoxCache $cache, SvgParser $svgParser, string $name, ?string $library = null, ?string $class = null)
     {
         $this->cache = $cache;
@@ -37,21 +40,26 @@ final class FontAwesomeBladeComponent extends Component
 
     public function render()
     {
-        if (\config('fontawesome.svg_href') && $this->cache->has($this->name, $this->library)) {
-            $svg = new Svg(
-                $this->cache->getIconId($this->name, $this->library),
-                $this->class,
-                $this->cache->get($this->name, $this->library)
-            );
+        // Blade components are evaluated multiple times.
+        // We need to make sure the output stays the same for consecutive renders of the same component.
+        if ($this->renderedCache === null) {
+            if (\config('fontawesome.svg_href') && $this->cache->has($this->name, $this->library)) {
+                $svg = new Svg(
+                    $this->cache->getIconId($this->name, $this->library),
+                    $this->class,
+                    $this->cache->get($this->name, $this->library)
+                );
 
-            return $svg->renderAsHref();
+                return $svg->renderAsHref();
+            }
+
+            $svg = $this->findSvg();
+
+            $this->cache->put($this->name, $this->library, $svg->view_box);
+            $this->renderedCache = $svg->render();
         }
 
-        $svg = $this->findSvg();
-
-        $this->cache->put($this->name, $this->library, $svg->view_box);
-
-        return $svg->render();
+        return $this->renderedCache;
     }
 
     private function findSvg(): Svg
