@@ -40,7 +40,7 @@ final class FontAwesomeBladeComponent extends Component
 
     public function render()
     {
-        // Blade components are evaluated multiple times.
+        // Blade components might be evaluated multiple times.
         // We need to make sure the output stays the same for consecutive renders of the same component.
         if ($this->renderedCache === null) {
             if (\config('fontawesome.svg_href') && $this->cache->has($this->name, $this->library)) {
@@ -85,7 +85,8 @@ final class FontAwesomeBladeComponent extends Component
 
         return $this->svgParser->parseXml(
             $this->cache->getIconId($this->name, $this->library),
-            $svg
+            $svg,
+            $this->class
         );
     }
 
