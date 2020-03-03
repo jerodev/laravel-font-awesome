@@ -25,8 +25,8 @@ final class FontAwesomeServiceProvider extends ServiceProvider
     private function registerComponents(): void
     {
         Blade::component(
-            $this->app->get('config')->get('fontawesome.component_name'),
-            FontAwesomeBladeComponent::class
+            FontAwesomeBladeComponent::class,
+            $this->app->get('config')->get('fontawesome.component_name')
         );
     }
 
