@@ -1,18 +1,17 @@
-# Font Awesome Blade component for Laravel
+# Font Awesome Blade directives for Laravel
 [![Latest Stable Version](https://poser.pugx.org/jerodev/laravel-font-awesome/v/stable)](https://packagist.org/packages/jerodev/laravel-font-awesome)
 [![License](https://poser.pugx.org/jerodev/laravel-font-awesome/license)](https://packagist.org/packages/jerodev/laravel-font-awesome)
-![PHP tests](https://github.com/jerodev/laravel-font-awesome/workflows/php%20tests/badge.svg)
 
-> This version of the package only works with Laravel 7.x and up.<br />
-> For other Laravel versions, refer to [version 2.0 of this package](readme_old.md).
+> This version of the package is meant for Laravel versions below 6.x.<br />
+> For Laravel 7 and up, you should install [v3.0](readme.md).
 
 This package will render font awesome icons in your views on the server side. This removes the need to add extra JavaScript or webfont resources on the client side and in doing so reduces the size of your website significantly.
 
-This is achieved by injecting the icons as their svg counterpart before sending the rendered view to the client.
+This is achieved by replacing the icons with their svg counterpart before sending the response to the client.
 
-```html
+``` html
 <!-- Turns this -->
-<x-icon name="circle"/>
+@fas('circle')
   
 <!-- Into this -->
 <svg viewBox="0 0 512 512" class="svg-inline--fa fa-w-16 fa-circle">
@@ -25,13 +24,17 @@ This is achieved by injecting the icons as their svg counterpart before sending 
 | Requirement | Version |
 | --- | --- |
 | PHP | >= 7.2 |
-| Laravel | 7.x |
+| Laravel | 6.x |
+
+### Laravel 5.x
+
+For Laravel 5.6 and up, use version v1.x of this package
 
 ## Installation
 
 Install the package using [Composer](https://getcomposer.org/).
 
-    composer require jerodev/laravel-font-awesome
+    composer require jerodev/laravel-font-awesome:2.x
 
 ### Service Provider
 
@@ -43,6 +46,8 @@ The package will be auto-discovered by Laravel. If you disabled auto-discovery, 
 
 ### Middleware
 
+> :warning: Since version 2.0, the middleware is no longer automatically injected. You will have to add this to the routes where needed.
+
 This package includes a middleware, [`InjectStyleSheet`](src/Middleware/InjectStyleSheet.php), that injects a minimal stylesheet into your views on render.
 
 The middleware can be added to your routes [as documented by Laravel](https://laravel.com/docs/master/middleware#assigning-middleware-to-routes):
@@ -53,34 +58,33 @@ Route::middleware(InjectStyleSheet::class)->group(static function () {
 });
 ```
 
-### Rendering
+### Views
 
-This package uses the new [blade components](https://laravel.com/docs/7.x/blade#components) added in Laravel 7.
-Using the `x-{component}` tags, the icons can be rendered, the name of the component can be changed in [the configuration](#configuration).
+To use Font Awesome icons in your view there are a few new blade directives.
 
-```html
-<!-- Let the package discover the best library for this icon. -->
-<x-icon name="laravel"/>
+``` php
+// Let the package discover the best library for this icon.
+@fa('laravel')
 
-<!-- Let the package discover the best library for this icon. -->
-<x-icon name="circle" library="regular"/>
-<x-icon name="circle" library="solid"/>
-<x-icon name="laravel" library="brand"/>
+// Define the library that should be used.
+@far('circle')      // Regular
+@fas('circle')      // Solid
+@fab('laravel')     // Brands
 ```
 
-When using the `<x-icon>` component without the `library` attribute, the package will scan the different Font Awesome libraries and use the first library where it finds the icon.
+When using the `@fa()` directive. The package will scan the different Font Awesome libraries and use the first library where it finds the icon.
 
 The order in which the libraries are scanned is `regular`, `brands`, `solid`. But this can be modified in the [configuration](#configuration).
 
-### Attributes
+### Parameters
 
-The `<x-icon>` component takes three possible attributes of which only the `name` is required.
+The `@fa()` function can take three parameters of which only the first is required.
 
-| Attribute  | Type | Description |
+| Parameter  | Type | Description |
 | --- | --- | --- |
 | `name` | string | The name of the icon |
-| `library` | string | The font awesome library to find the icon in |
-| `class` | string | Extra css classes to be appended to the svg output |
+| `css_class` | string | Extra css classes to be appended to the svg output |
+| `force_svg_href` | bool | Force the output to be an [svg href link](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href#use) if possible. This will disable static rendering, but allows to use `use:href` tags in rendering of loops.
 
 ## Configuration
 
@@ -90,6 +94,5 @@ The package contains a few configuration options that can be modified by first p
 
 | Key  | Type | Default value | Description |
 | --- | --- | --- | --- |
-| `component_name` | string  | `icon` | The name under which the component will be registered. Changing this value will also change the tag used in blade views. |
 | `libraries` | string[]  | `['regular', 'brands', 'solid']` | The icon libraries that will be available. This is also the order in which the libraries will be searched for icons. |
 | `svg_href` | bool| `true` | Use [svg href links](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href#use) for consecutive icons. |

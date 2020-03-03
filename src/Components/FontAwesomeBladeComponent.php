@@ -11,7 +11,7 @@ use Jerodev\LaraFontAwesome\SvgParser;
 final class FontAwesomeBladeComponent extends Component
 {
     /** @var string */
-    public $icon;
+    public $name;
 
     /** @var string|null */
     public $library;
@@ -25,21 +25,21 @@ final class FontAwesomeBladeComponent extends Component
     /** @var SvgParser */
     private $svgParser;
 
-    public function __construct(IconViewBoxCache $cache, SvgParser $svgParser, string $icon)
+    public function __construct(IconViewBoxCache $cache, SvgParser $svgParser, string $name)
     {
         $this->cache = $cache;
         $this->svgParser = $svgParser;
 
-        $this->icon = $this->getCleanIconName($icon);
+        $this->name = $this->getCleanIconName($name);
     }
 
     public function render()
     {
-        if (\config('fontawesome.svg_href') && $this->cache->has($this->icon, $this->library)) {
+        if (\config('fontawesome.svg_href') && $this->cache->has($this->name, $this->library)) {
             $svg = new Svg(
-                $this->cache->getIconId($this->icon, $this->library),
+                $this->cache->getIconId($this->name, $this->library),
                 $this->class,
-                $this->cache->get($this->icon, $this->library)
+                $this->cache->get($this->name, $this->library)
             );
 
             return $svg->renderAsHref();
@@ -47,7 +47,7 @@ final class FontAwesomeBladeComponent extends Component
 
         $svg = $this->findSvg();
 
-        $this->cache->put($this->icon, $this->library, $svg->view_box);
+        $this->cache->put($this->name, $this->library, $svg->view_box);
 
         return $svg->render();
     }
@@ -55,7 +55,7 @@ final class FontAwesomeBladeComponent extends Component
     private function findSvg(): Svg
     {
         $svg = null;
-        $path_str = \config('fontawesome.icon_path') . "%s/{$this->icon}.svg";
+        $path_str = \config('fontawesome.icon_path') . "%s/{$this->name}.svg";
 
         foreach (\config('fontawesome.libraries') as $folder) {
             if ($this->library !== null && $folder !== $this->library) {
@@ -70,11 +70,11 @@ final class FontAwesomeBladeComponent extends Component
         }
 
         if ($svg === null) {
-            throw new UnknownIconException($this->icon, $this->library);
+            throw new UnknownIconException($this->name, $this->library);
         }
 
         return $this->svgParser->parseXml(
-            $this->cache->getIconId($this->icon, $this->library),
+            $this->cache->getIconId($this->name, $this->library),
             $svg
         );
     }
