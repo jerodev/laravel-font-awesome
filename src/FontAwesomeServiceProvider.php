@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Jerodev\LaraFontAwesome\Components\FontAwesomeBladeComponent;
 
-class FontAwesomeServiceProvider extends ServiceProvider
+final class FontAwesomeServiceProvider extends ServiceProvider
 {
     public function boot()
     {

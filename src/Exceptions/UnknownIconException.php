@@ -4,7 +4,7 @@ namespace Jerodev\LaraFontAwesome\Exceptions;
 
 use Exception;
 
-class UnknownIconException extends Exception
+final class UnknownIconException extends Exception
 {
     public function __construct(string $icon, ?string $library = null)
     {

@@ -4,7 +4,7 @@ namespace Jerodev\LaraFontAwesome;
 
 use Jerodev\LaraFontAwesome\Models\Svg;
 
-class SvgParser
+final class SvgParser
 {
     public function parseXml(string $icon_id, string $xml): Svg
     {

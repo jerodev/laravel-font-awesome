@@ -6,7 +6,7 @@ use Jerodev\LaraFontAwesome\Components\FontAwesomeBladeComponent;
 use Jerodev\LaraFontAwesome\IconViewBoxCache;
 use Jerodev\LaraFontAwesome\SvgParser;
 
-class ComponentRenderTest extends TestCase
+final class ComponentRenderTest extends TestCase
 {
     public function testSimpleIconRender(): void
     {

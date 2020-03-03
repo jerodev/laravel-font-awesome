@@ -4,7 +4,7 @@ namespace Jerodev\LaraFontAwesome\Exceptions;
 
 use Exception;
 
-class MalformedViewBoxException extends Exception
+final class MalformedViewBoxException extends Exception
 {
     public function __construct($viewBox)
     {

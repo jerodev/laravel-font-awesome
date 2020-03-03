@@ -5,7 +5,7 @@ namespace Jerodev\LaraFontAwesome\Tests;
 use Jerodev\LaraFontAwesome\Models\Svg;
 use Jerodev\LaraFontAwesome\SvgParser;
 
-class SvgParserTest extends TestCase
+final class SvgParserTest extends TestCase
 {
     /** @var SvgParser */
     private $svgParser;
