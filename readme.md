@@ -24,7 +24,7 @@ This is achieved by injecting the icons as their svg counterpart before sending 
 
 | Requirement | Version |
 | --- | --- |
-| PHP | >= 7.2 |
+| PHP | >= 7.2.5 |
 | Laravel | 7.x |
 
 ## Installation

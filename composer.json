@@ -43,6 +43,7 @@
         }
     ],
     "require": {
+        "php": "^7.2.5",
         "illuminate/support": "7.x",
         "fortawesome/font-awesome": "^5.12",
         "squizlabs/php_codesniffer": "^3.5"
