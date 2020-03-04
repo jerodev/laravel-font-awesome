@@ -5,6 +5,7 @@ namespace Jerodev\LaraFontAwesome\Components;
 use Illuminate\View\Component;
 use Jerodev\LaraFontAwesome\Exceptions\UnknownIconException;
 use Jerodev\LaraFontAwesome\IconViewBoxCache;
+use Jerodev\LaraFontAwesome\Models\DummyView;
 use Jerodev\LaraFontAwesome\Models\Svg;
 use Jerodev\LaraFontAwesome\SvgParser;
 
@@ -60,7 +61,7 @@ final class FontAwesomeBladeComponent extends Component
             $this->renderedCache = $svg->render();
         }
 
-        return $this->renderedCache;
+        return new DummyView($this->renderedCache);
     }
 
     private function findSvg(): Svg
