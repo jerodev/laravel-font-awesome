@@ -65,7 +65,7 @@ final class Svg
 
         $classes = \array_filter(\explode(' ', $this->css_classes));
         $classes[] = 'svg-inline--fa';
-        $classes[] = 'fa-w-' . ($this->view_box[2] / $this->view_box[3] * 16);
+        $classes[] = 'fa-w-' . \round($this->view_box[2] / $this->view_box[3] * 16);
 
         return \implode(' ', \array_unique($classes));
     }
