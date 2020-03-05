@@ -6,8 +6,8 @@ use Exception;
 
 final class MalformedViewBoxException extends Exception
 {
-    public function __construct($viewBox)
+    public function __construct(string $icon, $viewBox)
     {
-        parent::__construct('ViewBox should be an array of 4 integers, got "' . \json_encode($viewBox) . '".');
+        parent::__construct("Receive a mallformed viewbox for icon '$icon'. Expected int[4], but got \"" . \json_encode($viewBox) . '".');
     }
 }

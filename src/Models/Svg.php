@@ -25,7 +25,7 @@ final class Svg
         $this->view_box = $view_box;
     }
 
-    public function render(): ?string
+    public function render(): string
     {
         $svg_viewBox = '';
         $symbol_start = '';
@@ -37,20 +37,12 @@ final class Svg
             $svg_viewBox = ' viewBox="' . \implode(' ', $this->view_box) . '"';
         }
 
-        try {
-            return "<svg class=\"{$this->renderCssClasses()}\"{$svg_viewBox}>{$symbol_start}<path fill=\"currentColor\" d=\"{$this->path}\"/>{$symbol_end}</svg>";
-        } catch (MalformedViewBoxException $e) {
-            return null;
-        }
+        return "<svg class=\"{$this->renderCssClasses()}\"{$svg_viewBox}>{$symbol_start}<path fill=\"currentColor\" d=\"{$this->path}\"/>{$symbol_end}</svg>";
     }
 
-    public function renderAsHref(): ?string
+    public function renderAsHref(): string
     {
-        try {
-            return "<svg class=\"{$this->renderCssClasses()}\"><use href=\"#{$this->icon_id}\"/></svg>";
-        } catch (MalformedViewBoxException $e) {
-            return null;
-        }
+        return "<svg class=\"{$this->renderCssClasses()}\"><use href=\"#{$this->icon_id}\"/></svg>";
     }
 
     /**
@@ -60,7 +52,7 @@ final class Svg
     private function renderCssClasses(): string
     {
         if ($this->view_box === null || \count($this->view_box) !== 4) {
-            throw new MalformedViewBoxException($this->view_box);
+            throw new MalformedViewBoxException($this->icon_id, $this->view_box);
         }
 
         $classes = \array_filter(\explode(' ', $this->css_classes));
