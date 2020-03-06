@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'component_name' => 'icon',
+    'component_name' => 'fa',
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     | DOM, this way the svg code only needs to be loaded once if used multiple
     | times.
     |
-    | Very old browser might not support this feature:
+    | Only very old browser might not support this feature:
     | https://caniuse.com/#feat=mdn-svg_elements_use_href
     |
     */

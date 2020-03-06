@@ -12,7 +12,7 @@ This is achieved by injecting the icons as their svg counterpart before sending 
 
 ```html
 <!-- Turns this -->
-<x-icon name="circle"/>
+<x-fa name="circle"/>
   
 <!-- Into this -->
 <svg viewBox="0 0 512 512" class="svg-inline--fa fa-w-16 fa-circle">
@@ -60,21 +60,21 @@ Using the `x-{component}` tags, the icons can be rendered, the name of the compo
 
 ```html
 <!-- Let the package discover the best library for this icon. -->
-<x-icon name="laravel"/>
+<x-fa name="laravel"/>
 
 <!-- Let the package discover the best library for this icon. -->
-<x-icon name="circle" library="regular"/>
-<x-icon name="circle" library="solid"/>
-<x-icon name="laravel" library="brand"/>
+<x-fa name="circle" library="regular"/>
+<x-fa name="circle" library="solid"/>
+<x-fa name="laravel" library="brand"/>
 ```
 
-When using the `<x-icon>` component without the `library` attribute, the package will scan the different Font Awesome libraries and use the first library where it finds the icon.
+When using the `<x-fa>` component without the `library` attribute, the package will scan the different Font Awesome libraries and use the first library where it finds the icon.
 
 The order in which the libraries are scanned is `regular`, `brands`, `solid`. But this can be modified in the [configuration](#configuration).
 
 ### Attributes
 
-The `<x-icon>` component takes three possible attributes of which only the `name` is required.
+The `<x-fa>` component takes three possible attributes of which only the `name` is required.
 
 | Attribute  | Type | Description |
 | --- | --- | --- |
@@ -90,6 +90,6 @@ The package contains a few configuration options that can be modified by first p
 
 | Key  | Type | Default value | Description |
 | --- | --- | --- | --- |
-| `component_name` | string  | `icon` | The name under which the component will be registered. Changing this value will also change the tag used in blade views. |
+| `component_name` | string  | `fa` | The name under which the component will be registered. Changing this value will also change the tag to be used in blade views. |
 | `libraries` | string[]  | `['regular', 'brands', 'solid']` | The icon libraries that will be available. This is also the order in which the libraries will be searched for icons. |
 | `svg_href` | bool| `true` | Use [svg href links](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href#use) for consecutive icons. |
