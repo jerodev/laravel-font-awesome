@@ -14,6 +14,9 @@ abstract class TestCase extends TestBenchTestCase
 
         // Tests assume svg_href is on by default
         $app['config']->set('fontawesome.svg_href', true);
+
+        // Tests assume font_awesome_css is on by default
+        $app['config']->set('fontawesome.font_awesome_css', true);
     }
 
     protected function getPackageProviders($app)

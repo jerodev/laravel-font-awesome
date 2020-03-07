@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 use Jerodev\LaraFontAwesome\Middleware\InjectStyleSheet;
 use Symfony\Component\HttpFoundation\Response as SymfonyBaseResponse;
 
-class MiddlewareTest extends TestCase
+final class MiddlewareTest extends TestCase
 {
     /** @var InjectStyleSheet */
     private $middleware;

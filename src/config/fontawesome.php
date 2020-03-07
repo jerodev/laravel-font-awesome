@@ -4,6 +4,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Component name
+    |--------------------------------------------------------------------------
+    |
+    | The name of the component to use in blade templates.
+    |
+    */
+
+    'component_name' => 'fa',
+
+    /*
+    |--------------------------------------------------------------------------
     | Path to svg libraries
     |--------------------------------------------------------------------------
     |
@@ -40,11 +51,24 @@ return [
     | DOM, this way the svg code only needs to be loaded once if used multiple
     | times.
     |
-    | Very old browser might not support this feature:
+    | Only very old browser might not support this feature:
     | https://caniuse.com/#feat=mdn-svg_elements_use_href
     |
     */
 
     'svg_href' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Use Font Awesome css
+    |--------------------------------------------------------------------------
+    |
+    | Whether to add the font awesome css to the svg tags in your dom.
+    | This is recommended, but if you want full control of how your svgs look
+    | it can be easier to disable this so you can style it all yourself.
+    |
+    */
+
+    'font_awesome_css' => true,
 
 ];

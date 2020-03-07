@@ -2,6 +2,8 @@
 
 namespace Jerodev\LaraFontAwesome\Models;
 
+use Jerodev\LaraFontAwesome\Exceptions\MalformedViewBoxException;
+
 final class Svg
 {
     /** @var string|null */
@@ -16,12 +18,11 @@ final class Svg
     /** @var int[]|null */
     public $view_box;
 
-    public function __construct(string $icon_id, ?string $css_classes = null)
+    public function __construct(string $icon_id, ?string $css_classes = null, ?array $view_box = null)
     {
         $this->icon_id = $icon_id;
         $this->css_classes = $css_classes;
-
-        $this->view_box = null;
+        $this->view_box = $view_box;
     }
 
     public function render(): string
@@ -36,20 +37,41 @@ final class Svg
             $svg_viewBox = ' viewBox="' . \implode(' ', $this->view_box) . '"';
         }
 
-        return "<svg class=\"{$this->renderCssClasses()}\"{$svg_viewBox}>{$symbol_start}<path fill=\"currentColor\" d=\"{$this->path}\" />{$symbol_end}</svg>";
+        $css = $this->renderCssClasses();
+        if ($css !== '') {
+            $css = " class=\"{$css}\"";
+        }
+
+        return "<svg{$css}{$svg_viewBox}>{$symbol_start}<path fill=\"currentColor\" d=\"{$this->path}\"/>{$symbol_end}</svg>";
     }
 
     public function renderAsHref(): string
     {
-        return "<svg class=\"{$this->renderCssClasses()}\"><use href=\"#{$this->icon_id}\"/></svg>";
+        $css = $this->renderCssClasses();
+        if ($css !== '') {
+            $css = " class=\"{$css}\"";
+        }
+
+        return "<svg{$css}><use href=\"#{$this->icon_id}\"/></svg>";
     }
 
+    /**
+     * @return string
+     * @throws MalformedViewBoxException
+     */
     private function renderCssClasses(): string
     {
-        $classes = \array_filter(\explode(' ', $this->css_classes));
-        $classes[] = 'svg-inline--fa';
-        $classes[] = 'fa-w-' . ($this->view_box[2] / $this->view_box[3] * 16);
+        if ($this->view_box === null || \count($this->view_box) !== 4) {
+            throw new MalformedViewBoxException($this->icon_id, $this->view_box);
+        }
 
-        return \implode(' ', \array_unique($classes));
+        $classes = \array_filter(\explode(' ', $this->css_classes));
+
+        if (\config('fontawesome.font_awesome_css')) {
+            $classes[] = 'svg-inline--fa';
+            $classes[] = 'fa-w-' . \round($this->view_box[2] / $this->view_box[3] * 16);
+        }
+
+        return \trim(\implode(' ', \array_unique($classes)));
     }
 }
