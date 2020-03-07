@@ -58,4 +58,17 @@ return [
 
     'svg_href' => true,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Use Font Awesome css
+    |--------------------------------------------------------------------------
+    |
+    | Whether to add the font awesome css to the svg tags in your dom.
+    | This is recommended, but if you want full control of how your svgs look
+    | it can be easier to disable this so you can style it all yourself.
+    |
+    */
+
+    'font_awesome_css' => true,
+
 ];

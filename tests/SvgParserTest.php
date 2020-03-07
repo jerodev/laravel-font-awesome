@@ -2,7 +2,6 @@
 
 namespace Jerodev\LaraFontAwesome\Tests;
 
-use Jerodev\LaraFontAwesome\Models\Svg;
 use Jerodev\LaraFontAwesome\SvgParser;
 
 final class SvgParserTest extends TestCase
@@ -15,38 +14,6 @@ final class SvgParserTest extends TestCase
         parent::setUp();
 
         $this->svgParser = \resolve(SvgParser::class);
-    }
-
-    public function testMalformedViewBox(): void
-    {
-        $svg = new Svg('fa-href');
-        $svg->view_box = [0, 0];
-
-        $this->assertNull($svg->render());
-        $this->assertNull($svg->renderAsHref());
-    }
-
-    public function testRenderHref(): void
-    {
-        $svg = new Svg('fa-href');
-        $svg->view_box = [0, 0, 512, 512];
-
-        $this->assertEquals(
-            '<svg class="svg-inline--fa fa-w-16"><use href="#fa-href"/></svg>',
-            $svg->renderAsHref()
-        );
-    }
-
-    public function testRenderSvg(): void
-    {
-        $svg = new Svg('fa-href');
-        $svg->view_box = [0, 0, 512, 512];
-        $svg->path = 'foo bar';
-
-        $this->assertEquals(
-            '<svg class="svg-inline--fa fa-w-16"><symbol id="fa-href" viewBox="0 0 512 512"><path fill="currentColor" d="foo bar"/></symbol><use href="#fa-href"/></svg>',
-            $svg->render()
-        );
     }
 
     /**

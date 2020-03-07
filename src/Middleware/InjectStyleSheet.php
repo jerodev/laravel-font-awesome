@@ -11,6 +11,10 @@ final class InjectStyleSheet
 {
     public function handle(Request $request, Closure $next)
     {
+        if (\config('fontawesome.font_awesome_css') === false) {
+            return $next($request);
+        }
+
         $response = $next($request);
 
         if ($response instanceof RedirectResponse
@@ -28,7 +32,7 @@ final class InjectStyleSheet
     private function injectStyleSheet(SymfonyBaseResponse $response)
     {
         $content = $response->getContent();
-        $content = \str_replace('</head>', '<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@5.12.1/css/svg-with-js.min.css"/></head>', $content);
+        $content = \str_replace('</head>', '<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@latest/css/svg-with-js.min.css"/></head>', $content);
         $response->setContent($content);
 
         return $response;

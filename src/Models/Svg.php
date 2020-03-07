@@ -37,12 +37,22 @@ final class Svg
             $svg_viewBox = ' viewBox="' . \implode(' ', $this->view_box) . '"';
         }
 
-        return "<svg class=\"{$this->renderCssClasses()}\"{$svg_viewBox}>{$symbol_start}<path fill=\"currentColor\" d=\"{$this->path}\"/>{$symbol_end}</svg>";
+        $css = $this->renderCssClasses();
+        if ($css !== '') {
+            $css = " class=\"{$css}\"";
+        }
+
+        return "<svg{$css}{$svg_viewBox}>{$symbol_start}<path fill=\"currentColor\" d=\"{$this->path}\"/>{$symbol_end}</svg>";
     }
 
     public function renderAsHref(): string
     {
-        return "<svg class=\"{$this->renderCssClasses()}\"><use href=\"#{$this->icon_id}\"/></svg>";
+        $css = $this->renderCssClasses();
+        if ($css !== '') {
+            $css = " class=\"{$css}\"";
+        }
+
+        return "<svg{$css}><use href=\"#{$this->icon_id}\"/></svg>";
     }
 
     /**
@@ -56,9 +66,12 @@ final class Svg
         }
 
         $classes = \array_filter(\explode(' ', $this->css_classes));
-        $classes[] = 'svg-inline--fa';
-        $classes[] = 'fa-w-' . \round($this->view_box[2] / $this->view_box[3] * 16);
 
-        return \implode(' ', \array_unique($classes));
+        if (\config('fontawesome.font_awesome_css')) {
+            $classes[] = 'svg-inline--fa';
+            $classes[] = 'fa-w-' . \round($this->view_box[2] / $this->view_box[3] * 16);
+        }
+
+        return \trim(\implode(' ', \array_unique($classes)));
     }
 }
