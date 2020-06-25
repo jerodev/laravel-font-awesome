@@ -1,3 +1,6 @@
+> :bangbang: This package is no longer maintained.<br />
+> I recommend switching to https://github.com/blade-ui-kit/blade-icons
+
 # Font Awesome Blade directives for Laravel
 [![Latest Stable Version](https://poser.pugx.org/jerodev/laravel-font-awesome/v/stable?format=flat-square)](https://packagist.org/packages/jerodev/laravel-font-awesome)
 [![License](https://poser.pugx.org/jerodev/laravel-font-awesome/license?format=flat-square)](https://packagist.org/packages/jerodev/laravel-font-awesome)
